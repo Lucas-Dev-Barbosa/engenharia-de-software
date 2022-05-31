@@ -7,8 +7,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
 
 @Entity
@@ -21,10 +22,12 @@ public class Eleicao {
 	private LocalDateTime data;
 	private String descricao;
 
-	@Transient
+	@OneToMany
+	@JoinColumn(name = "idEleicao")
 	private List<Voto> votos;
 
-	@Transient
+	@OneToMany
+	@JoinColumn(name = "idEleicao")
 	private List<Candidato> candidatos;
 
 	public Eleicao() {

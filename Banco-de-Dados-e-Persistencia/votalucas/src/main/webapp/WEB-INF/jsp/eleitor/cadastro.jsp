@@ -1,9 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Cadastramento de Eleitores</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
@@ -16,8 +16,8 @@
 	  
 	  <form action="/eleitor/incluir" method="post">
 	    <div class="mb-3 mt-3">
-	      <label>Código:</label>
-	      <input type="number" class="form-control" placeholder="Entre com o código" name="numero" value="555">
+	      <label>CÃ³digo:</label>
+	      <input type="number" class="form-control" placeholder="Entre com o cÃ³digo" name="codigo" value="555">
 	    </div>
 	    
 	    <div class="mb-3 mt-3">
@@ -32,7 +32,7 @@
 	    
 	    <div class="mb-3 mt-3">
 	      <label>Telefone:</label>
-	      <input type="text" class="form-control" placeholder="Entre com o seu telefone" name="telefone" value="Lucas Barbosa">
+	      <input type="text" class="form-control" placeholder="Entre com o seu telefone" name="telefone" value="21654654654">
 	    </div>
 	    
 	    <div class="mb-3 mt-3">

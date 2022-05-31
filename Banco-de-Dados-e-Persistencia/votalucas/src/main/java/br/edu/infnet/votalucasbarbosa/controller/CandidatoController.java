@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import br.edu.infnet.votalucasbarbosa.model.domain.Candidato;
+import br.edu.infnet.votalucasbarbosa.model.domain.Eleicao;
 import br.edu.infnet.votalucasbarbosa.model.domain.service.CandidatoService;
+import br.edu.infnet.votalucasbarbosa.model.domain.service.EleicaoService;
 
 @Controller
 public class CandidatoController {
 	@Autowired
 	private CandidatoService candidatoService;
+	
+	@Autowired
+	private EleicaoService eleicaoService;
 
 	@GetMapping(value = "/candidatos")
 	public String lista(Model model) {
@@ -27,7 +32,10 @@ public class CandidatoController {
 	}
 	
 	@GetMapping(value = "/candidato")
-	public String cadastro() {
+	public String cadastro(Model model) {
+		List<Eleicao> listaEleicao = eleicaoService.obterLista();
+		model.addAttribute("eleicoes", listaEleicao);
+		
 		return "candidato/cadastro";
 	}
 	

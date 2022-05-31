@@ -1,10 +1,10 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Cadastramento de Eleições</title>
+<meta charset="UTF-8">
+<title>Cadastramento de EleiÃ§Ãµes</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
@@ -12,12 +12,12 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 	<div class="container mt-3">
-	  <h2>Cadastramento de Eleições</h2>
+	  <h2>Cadastramento de EleiÃ§Ãµes</h2>
 	  
 	  <form action="/eleicao/incluir" method="post">
 	    <div class="mb-3 mt-3">
-	      <label>Descrição:</label>
-	      <input type="text" class="form-control" placeholder="Entre com a descrição da eleição" name="descricao" value="Descrição">
+	      <label>DescriÃ§Ã£o:</label>
+	      <input type="text" class="form-control" placeholder="Entre com a descriÃ§Ã£o da eleiÃ§Ã£o" name="descricao" value="DescriÃ§Ã£o">
 	    </div>
 
 	    <button type="submit" class="btn btn-primary">Cadastrar</button>

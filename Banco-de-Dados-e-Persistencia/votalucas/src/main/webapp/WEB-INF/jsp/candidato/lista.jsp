@@ -1,9 +1,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>AppMIT</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
@@ -27,8 +27,10 @@
 		    <thead>
 		      <tr>
 		        <th>ID</th>
-		        <th>N�mero</th>
+		        <th>Número</th>
 		        <th>Nome</th>
+		        <th>Eleição</th>
+		        <th>Votos</th>
 		        <th></th>
 		      </tr>
 		    </thead>
@@ -38,6 +40,8 @@
 			        <td>${s.id}</td>
 			        <td>${s.numero}</td>
 			        <td>${s.nome}</td>
+			        <td>${s.eleicao.descricao}</td>
+			        <td>${s.votos.size()}</td>
 			        <td><a href="/candidato/${s.id}/excluir">excluir</a></td>
 			      </tr>
 		      </c:forEach>		      
@@ -46,7 +50,7 @@
     </c:if>	  	  
 
 	<c:if test="${empty lista}">		
-	  <h2>N�o existem candidatos cadastrados!!!</h2>
+	  <h2>Não existem candidatos cadastrados!!!</h2>
 	</c:if>
 
 	</div>
