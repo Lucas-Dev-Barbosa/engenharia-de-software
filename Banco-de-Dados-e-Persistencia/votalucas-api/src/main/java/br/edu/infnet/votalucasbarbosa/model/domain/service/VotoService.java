@@ -14,12 +14,12 @@ public class VotoService {
 	@Autowired
 	private VotoRepository votoRepository;
 	
-	public void incluir(Voto voto) {
-		votoRepository.save(voto);
-	}
-	
 	public List<Voto> obterLista(){
 		return (List<Voto>) votoRepository.findAll();
+	}
+	
+	public Voto incluir(Voto voto) {
+		return votoRepository.save(voto);
 	}
 
 	public void excluir(Integer id) {
@@ -32,6 +32,10 @@ public class VotoService {
 
 	public List<Voto> listarVotosPorEleicao(Integer idEleicao) {
 		return votoRepository.findByEleicao(idEleicao);
+	}
+
+	public List<Voto> listarVotosPorEleitor(Integer idEleitor) {
+		return votoRepository.findByEleitor(idEleitor);
 	}
 	
 }

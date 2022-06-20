@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -22,16 +24,21 @@ public class Voto {
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime data;
+	
+	@NotBlank(message = "Informe a localização do voto")
 	private String localizacao;
 
+	@NotNull(message = "É necessário referenciar o ID do eleitor")
 	@ManyToOne
 	@JoinColumn(name = "idEleitor")
 	private Eleitor eleitor;
 	
+	@NotNull(message = "É necessário referenciar o ID da eleição")
 	@ManyToOne
 	@JoinColumn(name = "idEleicao")
 	private Eleicao eleicao;
 	
+	@NotNull(message = "É necessário referenciar o ID do candidato")
 	@ManyToOne
 	@JoinColumn(name = "idCandidato")
 	private Candidato candidato;

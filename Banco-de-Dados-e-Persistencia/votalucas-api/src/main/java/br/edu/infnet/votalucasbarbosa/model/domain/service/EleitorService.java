@@ -14,8 +14,8 @@ public class EleitorService {
 	@Autowired
 	private EleitorRepository eleitorRepository;
 	
-	public void incluir(Eleitor eleitor) {
-		eleitorRepository.save(eleitor);
+	public Eleitor incluir(Eleitor eleitor) {
+		return eleitorRepository.save(eleitor);
 	}
 	
 	public List<Eleitor> obterLista(){

@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -23,9 +26,15 @@ public class Candidato {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-	private int numero;
+	
+	@NotNull(message = "O número do candidato não pode ser nulo")
+	@Min(value = 1, message = "O número do candidato não pode ser menor que 1")
+	private Integer numero;
+	
+	@NotBlank(message = "O nome do candidato deve estar preenchido")
 	private String nome;
 
+	@NotNull(message = "É necessário referenciar a eleição do candidato")
 	@ManyToOne
 	@JoinColumn(name = "idEleicao")
 	@JsonBackReference(value = "eleicao")
@@ -44,11 +53,11 @@ public class Candidato {
 		this.id = id;
 	}
 
-	public int getNumero() {
+	public Integer getNumero() {
 		return numero;
 	}
 
-	public void setNumero(int numero) {
+	public void setNumero(Integer numero) {
 		this.numero = numero;
 	}
 

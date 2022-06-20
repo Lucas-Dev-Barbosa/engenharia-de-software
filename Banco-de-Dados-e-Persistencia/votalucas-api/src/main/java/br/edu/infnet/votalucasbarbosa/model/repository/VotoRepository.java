@@ -17,4 +17,7 @@ public interface VotoRepository extends CrudRepository<Voto, Integer>{
 	@Query("from Voto v where v.eleicao.id = :idEleicao")
 	List<Voto> findByEleicao(Integer idEleicao);
 
+	@Query("from Voto v where v.eleitor.id = :idEleitor")
+	List<Voto> findByEleitor(Integer idEleitor);
+
 }

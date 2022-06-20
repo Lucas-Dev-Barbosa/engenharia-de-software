@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,10 +22,20 @@ public class Eleitor {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	@NotBlank(message = "O código do Eleitor não pode ficar vazio")
 	private String codigo;
+	
+	@NotBlank(message = "O nome do Eleitor não pode ficar vazio")
 	private String nome;
+	
+	@NotBlank(message = "O email do Eleitor não pode ficar vazio")
 	private String email;
+	
+	@NotBlank(message = "O telefone do Eleitor não pode ficar vazio")
 	private String telefone;
+	
+	@NotBlank(message = "O token do Eleitor não pode ficar vazio")
 	private String token;
 
 	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
