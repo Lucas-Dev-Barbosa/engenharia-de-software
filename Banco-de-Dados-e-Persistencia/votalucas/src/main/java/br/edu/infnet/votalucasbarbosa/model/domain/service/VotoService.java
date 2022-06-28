@@ -10,20 +10,20 @@ import br.edu.infnet.votalucasbarbosa.model.domain.Voto;
 
 @Service
 public class VotoService {
-	
+
 	@Autowired
 	private VotosEndPoint client;
-	
+
 	public void incluir(Voto voto) {
 		client.incluir(voto);
 	}
-	
-	public List<Voto> obterLista(){
+
+	public List<Voto> obterLista() {
 		return client.obterLista();
 	}
 
 	public void excluir(Integer id) {
 		client.excluir(id);
 	}
-	
+
 }

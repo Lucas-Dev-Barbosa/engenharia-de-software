@@ -24,16 +24,10 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
 
-		Map<String, Object> body = new LinkedHashMap<>();
-
-		body.put("timestamp", new Date());
-		body.put("status", status.value());
-		body.put("error", status.getReasonPhrase());
-
 		List<String> messages = ex.getBindingResult().getFieldErrors().stream().map(x -> x.getDefaultMessage())
 				.collect(Collectors.toList());
 
-		body.put("messages", messages);
+		Map<String, Object> body = getBody(status.value(), status.getReasonPhrase(), messages);
 
 		return new ResponseEntity<Object>(body, headers, status);
 	}
@@ -41,15 +35,21 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 	@ExceptionHandler(SQLIntegrityConstraintViolationException.class)
 	public ResponseEntity<Object> constraintViolationException(SQLIntegrityConstraintViolationException ex) throws IOException {
 		
-		Map<String, Object> body = new LinkedHashMap<>();
-
-		body.put("timestamp", new Date());
-		body.put("status", HttpStatus.BAD_REQUEST.value());
-		body.put("error", HttpStatus.BAD_REQUEST.getReasonPhrase());
-		body.put("message", "Violação de integridade");
+		Map<String, Object> body = getBody(HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(), List.of("Violação de integridade"));
 		
 		return new ResponseEntity<Object>(body, HttpStatus.BAD_REQUEST);
 		
+	}
+	
+	private Map<String, Object> getBody(int status, String error, List<String> message){
+		Map<String, Object> body = new LinkedHashMap<>();
+		
+		body.put("timestamp", new Date());
+		body.put("status", status);
+		body.put("error", error);
+		body.put("message", message);
+		
+		return body;
 	}
 
 }

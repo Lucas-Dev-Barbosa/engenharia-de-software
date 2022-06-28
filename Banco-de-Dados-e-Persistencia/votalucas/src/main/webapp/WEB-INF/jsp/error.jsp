@@ -14,5 +14,12 @@
 	<div class="container mt-3">
 	  <h2>Votaew: gestão de votação</h2>
 	</div>
+	
+	<div class="container mt-3">
+	  <h3>${error} - Status: ${status}</h3>
+	  <c:forEach var="m" items="${message}">
+	  	<p>${m}</p>
+	  </c:forEach>
+	</div>
 </body>
 </html>
