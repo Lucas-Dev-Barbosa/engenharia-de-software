@@ -2,7 +2,6 @@ package br.edu.infnet.votalucasbarbosa;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.votalucasbarbosa.model.domain.Eleitor;
@@ -10,12 +9,11 @@ import br.edu.infnet.votalucasbarbosa.model.domain.service.EleitorService;
 
 //Classe que será carregada sempre quando a aplicação iniciar
 @Component
-public class EleitorLoader implements ApplicationRunner {
+public class EleitorLoader {
 	
 	@Autowired
 	private EleitorService eleitorService;
 
-	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
 		Eleitor eleitor = new Eleitor();

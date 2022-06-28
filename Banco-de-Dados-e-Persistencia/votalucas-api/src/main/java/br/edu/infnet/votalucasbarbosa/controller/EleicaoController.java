@@ -30,6 +30,12 @@ public class EleicaoController {
 		return listaEleicao;
 	}
 	
+	@GetMapping(value = "/{idEleicao}")
+	public Eleicao obterEleicaoPorId(@PathVariable Integer idEleicao) {
+		Eleicao eleicao = eleicaoService.obterPorId(idEleicao);
+		return eleicao;
+	}
+	
 	@GetMapping(value = "/{idCandidato}/candidato")
 	public Eleicao obterEleicaoPorCandidato(@PathVariable Integer idCandidato) {
 		Eleicao eleicao = eleicaoService.obterEleicaoPorIdCandidato(idCandidato);

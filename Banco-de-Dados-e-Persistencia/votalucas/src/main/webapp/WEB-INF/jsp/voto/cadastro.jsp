@@ -76,8 +76,6 @@
 		var eleitor = document.getElementById('eleitor');
 		var candidato = document.getElementById('candidato');
 		
-		console.log(eleitor, candidato);
-		
 		if(!eleitor || !candidato){
 			document.getElementById('botao').disabled = true;
 		}

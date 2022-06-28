@@ -4,7 +4,6 @@ import java.time.LocalDateTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
-import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
 import br.edu.infnet.votalucasbarbosa.model.domain.Eleicao;
@@ -12,12 +11,11 @@ import br.edu.infnet.votalucasbarbosa.model.domain.service.EleicaoService;
 
 //Classe que será carregada sempre quando a aplicação iniciar
 @Component
-public class EleicaoLoader implements ApplicationRunner {
+public class EleicaoLoader {
 
 	@Autowired
 	private EleicaoService eleicaoService;
 
-	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
 		Eleicao eleicao = new Eleicao();

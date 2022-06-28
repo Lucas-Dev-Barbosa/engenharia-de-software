@@ -29,7 +29,7 @@
 	    
 	    <c:if test="${not empty eleicoes}">
 			<label>Eleição:</label>
-			<select class="form-control" name="eleicao.id">
+			<select id="eleicoes" class="form-control" name="eleicao.id">
 				<option selected="selected" disabled="disabled">Escolha uma opção</option>
 				<c:forEach var="e" items="${eleicoes}" >
 					<option value="${e.id}">${e.descricao}</option>
@@ -38,15 +38,25 @@
 		</c:if>
 		
 		<c:if test="${empty eleicoes}">
-			<c:set var="botao" value="disabled" />
 			<h5>Não existem eleições cadastradas no momento!!!</h5>
 		</c:if>
 		
 		<br/>
 	    
-	    <button type="submit" class="btn btn-primary">Cadastrar</button>
+	    <button id="botao" type="submit" class="btn btn-primary">Cadastrar</button>
 	  </form>
 	</div>
+	
+<script type="text/javascript">
+   	validaCadastro();
 
+	function validaCadastro(){
+		var eleicoes = document.getElementById('eleicoes');
+		
+		if(!eleicoes){
+			document.getElementById('botao').disabled = true;
+		}
+	}
+</script>
 </body>
 </html>

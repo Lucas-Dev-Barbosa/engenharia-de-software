@@ -22,7 +22,6 @@ public class Voto {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
 	private LocalDateTime data;
 	
 	@NotBlank(message = "Informe a localização do voto")

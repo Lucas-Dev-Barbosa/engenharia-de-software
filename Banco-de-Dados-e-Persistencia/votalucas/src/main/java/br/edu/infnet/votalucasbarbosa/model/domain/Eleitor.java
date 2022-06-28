@@ -2,22 +2,8 @@ package br.edu.infnet.votalucasbarbosa.model.domain;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-
-@Entity
-@Table(name = "TEleitor", uniqueConstraints = @UniqueConstraint(columnNames = { "codigo" }))
 public class Eleitor {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String codigo;
 	private String nome;
@@ -25,8 +11,6 @@ public class Eleitor {
 	private String telefone;
 	private String token;
 
-	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
-	@JoinColumn(name = "idEleitor")
 	private List<Voto> votos;
 
 	public Integer getId() {

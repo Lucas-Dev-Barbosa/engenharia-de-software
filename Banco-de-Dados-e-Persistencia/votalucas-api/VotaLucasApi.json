@@ -311,6 +311,27 @@
 			"response": []
 		},
 		{
+			"name": "api-listar-eleicao-por-id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/eleicoes/95",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"eleicoes",
+						"95"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "api-listar-eleitor",
 			"request": {
 				"method": "GET",
