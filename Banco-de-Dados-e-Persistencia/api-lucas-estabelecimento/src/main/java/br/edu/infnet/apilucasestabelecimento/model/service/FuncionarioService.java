@@ -21,5 +21,9 @@ public class FuncionarioService {
 	public void incluir(Funcionario funcionario) {
 		repository.save(funcionario);
 	}
+
+	public List<Funcionario> obterLista() {
+		return (List<Funcionario>) repository.findAll();
+	}
 	
 }

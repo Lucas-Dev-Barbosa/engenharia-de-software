@@ -3,8 +3,8 @@ package br.edu.infnet.apilucasestabelecimento.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,10 +19,10 @@ public class FuncionarioController {
 	
 	@Autowired
 	private FuncionarioService service;
-
-	@GetMapping(value = "/{idEstabelecimento}/listar")
-	public List<Funcionario> obterLista(@PathVariable Integer idEstabelecimento) {
-		return service.obterLista(idEstabelecimento);
+	
+	@GetMapping(value = "/listar")
+	public List<Funcionario> obterLista(Model model) {
+		return service.obterLista();
 	}
 	
 	@PostMapping(value = "/incluir")

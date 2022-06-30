@@ -1,7 +1,5 @@
 package br.edu.infnet.apilucasestabelecimento.model.service;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +18,6 @@ public class UsuarioService {
 	
 	public void excluir(Integer id) {
 		repository.deleteById(id);
-	}
-
-	public List<Usuario> obterLista() {
-		return (List<Usuario>) repository.findAll();
 	}
 
 }

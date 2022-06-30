@@ -12,7 +12,7 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "TUsuario", uniqueConstraints = @UniqueConstraint(columnNames={"login"}))
 @Inheritance(strategy = InheritanceType.JOINED)
-public abstract class Usuario {
+public class Usuario {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,6 +20,16 @@ public abstract class Usuario {
 	private String nome;
 	private String login;
 	private String senha;
+	
+	public Usuario() {
+	}
+	
+	public Usuario(Integer id, String nome, String login, String senha) {
+		this.id = id;
+		this.nome = nome;
+		this.login = login;
+		this.senha = senha;
+	}
 	
 	public Integer getId() {
 		return id;
