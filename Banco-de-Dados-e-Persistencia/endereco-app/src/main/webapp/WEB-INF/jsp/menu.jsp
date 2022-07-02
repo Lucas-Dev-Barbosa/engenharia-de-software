@@ -7,9 +7,12 @@
 		</div>
 		<ul class="nav navbar-nav">
 			<li class="active"><a href="/">Home</a></li>
-
 			<li><a href="/enderecos">Endereço</a></li>
 			<li><a href="/estados">Estados</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right">
+			<li><a href="/usuario">Signup</a></li>
+			<li><a href="/login">Login</a></li>
 		</ul>
 	</div>
 </nav>

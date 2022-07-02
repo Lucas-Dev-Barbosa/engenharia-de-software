@@ -1,5 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,13 +13,15 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 
 	<div class="container mt-3">
-	  <h2>Cadastramento de Endereços</h2>
-	  
-	  <form action="/endereco" method="get">
-	    <button type="submit" class="btn btn-primary">Novo</button>
-	  </form>
-	  
-	  <hr>
+		<security:authorize access="hasRole('ADMIN')">
+		  <h2>Cadastramento de Endereços</h2>
+		  
+		  <form action="/endereco" method="get">
+		    <button type="submit" class="btn btn-primary">Novo</button>
+		  </form>
+		  
+		  <hr>
+	  	</security:authorize>
 		
 	<c:if test="${not empty lista}">		
 		<h4>Total de Enderecos: ${lista.size()}</h4>
@@ -33,7 +36,7 @@
 		        <th>Bairro</th>
 		        <th>Localidade</th>
 		        <th>Uf</th>
-		        <th></th>
+		        <security:authorize access="hasRole('ADMIN')"><th></th></security:authorize>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -46,7 +49,7 @@
 			        <td>${e.bairro}</td>
 			        <td>${e.localidade}</td>
 			        <td>${e.uf}</td>
-			        <td><a href="/endereco/${e.id}/excluir">excluir</a></td>
+			        <security:authorize access="hasRole('ADMIN')"><td><a href="/endereco/${e.id}/excluir">excluir</a></td></security:authorize>
 			      </tr>
 		      </c:forEach>		      
 		    </tbody>
