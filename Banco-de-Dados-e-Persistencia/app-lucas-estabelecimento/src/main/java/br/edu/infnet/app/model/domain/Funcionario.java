@@ -1,11 +1,23 @@
 package br.edu.infnet.app.model.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "TFuncionario", uniqueConstraints = @UniqueConstraint(columnNames={"cpf"}))
 public class Funcionario extends Usuario {
+	
+	private static final long serialVersionUID = 1L;
 
 	private String cpf;
 	private String email;
 	private String telefone;
 
+	@ManyToOne
+	@JoinColumn(name = "idEstabelecimento")
 	private Estabelecimento estabelecimento;
 	
 	public String getCpf() {

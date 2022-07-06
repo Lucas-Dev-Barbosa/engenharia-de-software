@@ -1,4 +1,4 @@
-package br.edu.infnet.app.model.domain;
+package br.edu.infnet.votalucasbarbosa.model.domain;
 
 import java.util.Collection;
 import java.util.List;
@@ -8,8 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -17,23 +15,30 @@ import javax.persistence.UniqueConstraint;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-
 @Entity
-@Table(name = "tusuario", uniqueConstraints = @UniqueConstraint(columnNames = {"login"}))
-@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "tusuario", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 public class Usuario implements UserDetails {
-	
+
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	private String nome;
-	private String login;
+	private String email;
 	private String senha;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
 	private List<Role> roles;
+	
+	public Usuario() {
+		this.setNome("admin");
+	}
+	
+	public Usuario(String email, String senha) {
+		this.setEmail(email);
+		this.setSenha(senha);
+	}
 	
 	public Integer getId() {
 		return id;
@@ -47,11 +52,11 @@ public class Usuario implements UserDetails {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getLogin() {
-		return login;
+	public String getEmail() {
+		return email;
 	}
-	public void setLogin(String login) {
-		this.login = login;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	public String getSenha() {
 		return senha;
@@ -83,7 +88,7 @@ public class Usuario implements UserDetails {
 
 	@Override
 	public String getUsername() {
-		return this.getLogin();
+		return this.getEmail();
 	}
 
 	@Override
@@ -105,5 +110,5 @@ public class Usuario implements UserDetails {
 	public boolean isEnabled() {
 		return true;
 	}
-
+	
 }

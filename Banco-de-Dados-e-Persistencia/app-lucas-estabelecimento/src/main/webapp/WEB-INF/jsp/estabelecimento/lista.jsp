@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -17,7 +18,9 @@
 
 		<a href="/estabelecimentos?modo=listaCrua" class="btn btn-secondary">Lista de Estabelecimentos</a> 
 		<a href="/estabelecimentos?modo=listaPorFuncionario" class="btn btn-secondary">Funcionários por estabelecimento</a>
-		<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroEstabelecimentoModal">Incluir estabelecimento</a>
+		<security:authorize access="hasRole('ADMIN')">
+			<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroEstabelecimentoModal">Incluir estabelecimento</a>
+		</security:authorize>
 		<hr>
 
 		<c:if test="${not empty listaCrua}">
@@ -31,7 +34,9 @@
 						<th>CNPJ</th>
 						<th>Endereço</th>
 						<th>EdTech</th>
-						<th></th>
+						<security:authorize access="hasRole('ADMIN')">
+				        	<th></th>
+				        </security:authorize>
 					</tr>
 				</thead>
 				<tbody>
@@ -52,7 +57,9 @@
 							        </c:otherwise>
 								</c:choose>
 							</td>
-							<td><a href="/estabelecimentos/${e.id}/preExcluir">excluir</a></td>
+							<security:authorize access="hasRole('ADMIN')">
+								<td><a href="/estabelecimentos/${e.id}/preExcluir">excluir</a></td>
+							</security:authorize>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -153,6 +160,15 @@
 				  EdTech
 				</label>
 	          </div>
+	          
+	          <div class="mb-3 mt-3">
+					<label>Acesso:</label>
+					<select class="form-control" name="acesso">
+						<c:forEach var="r" items="${roles}">
+							<option value="${r.id}">${r.nome}</option>
+						</c:forEach>
+					</select>
+				</div>
 	          
 	          <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>

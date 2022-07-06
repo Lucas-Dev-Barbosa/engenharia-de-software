@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -14,9 +15,11 @@
 	<div class="container mt-3">
 	  <h2>Lista de Eleitores</h2>
 	  
-	  <form action="/eleitor" method="get">
-	    <button type="submit" class="btn btn-primary">Novo</button>
-	  </form>
+	  <security:authorize access="hasRole('ADMIN')">
+		  <form action="/eleitor" method="get">
+		    <button type="submit" class="btn btn-primary">Novo</button>
+		  </form>
+	  </security:authorize>
 	  
 	  <hr>
 		
@@ -33,7 +36,9 @@
 		        <th>Telefone</th>
 		        <th>Token</th>
 		        <th>Votos</th>
-		        <th></th>
+		        <security:authorize access="hasRole('ADMIN')">
+		        	<th></th>
+		        </security:authorize>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -46,7 +51,9 @@
 			        <td>${s.telefone}</td>
 			        <td>${s.token}</td>
 			        <td>${s.votos.size()}</td>
-			        <td><a href="/eleitor/${s.id}/excluir">excluir</a></td>
+			        <security:authorize access="hasRole('ADMIN')">
+			        	<td><a href="/eleitor/${s.id}/excluir">excluir</a></td>
+			        </security:authorize>
 			      </tr>
 		      </c:forEach>		      
 		    </tbody>

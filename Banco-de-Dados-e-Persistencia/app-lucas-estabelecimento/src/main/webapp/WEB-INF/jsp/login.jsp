@@ -12,18 +12,18 @@
 	<c:import url="/WEB-INF/jsp/menu.jsp"/>
 	
 	<div class="container mt-3">
-	  <form class="row g-3" action="/usuarios/validar" method="post">
+	  <form class="row g-3" action="/login" method="post">
           <div class="col-md-6">
             <label for="login" class="col-form-label">Login:</label>
-            <input type="text" class="form-control" name="login" id="login">
+            <input type="text" class="form-control" name="username" id="login">
           </div>
           
           <div class="col-md-6">
             <label for="senha" class="col-form-label">Senha:</label>
-            <input type="password" class="form-control" name="senha" id="senha">
+            <input type="password" class="form-control" name="password" id="senha">
           </div>
           
-          <button id="cadastrarFuncionario" type="submit" class="btn btn-primary">Validar</button>
+          <button type="submit" class="btn btn-primary">Entrar</button>
        </form>
 	</div>
 </body>

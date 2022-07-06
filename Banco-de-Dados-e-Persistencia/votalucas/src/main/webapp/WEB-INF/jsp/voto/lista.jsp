@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,29 +16,31 @@
 	<div class="container mt-3">
 		<h2>Lista de Votos</h2>
 
-		<form id="form" action="/voto" method="post">
-			<div class="form-group">
-				<c:if test="${not empty eleicoes}">
-					<label>Para cadastrar um novo voto, selecione a eleição:</label>
-					<select id="eleicoes" class="form-control" name="eleicao.id" onchange="validaSelectEleicoes()">
-						<option>Escolha uma opção</option>
-						<c:forEach var="e" items="${eleicoes}" >
-							<option value="${e.id}">${e.descricao}</option>
-						</c:forEach>
-					</select>
-					
-					<br />
-					
-					<button id="botao" type="submit" class="btn btn-primary">Novo</button>
-				</c:if>
-
-				<c:if test="${empty eleicoes}">
-					<c:set var="botao" value="disabled" />
-					<h5>Não existem eleições cadastradas!!!</h5>
-					<h5>Cadastre eleições para cadastrar novos votos.</h5>
-				</c:if>
-			</div>
-		</form>
+		<security:authorize access="hasRole('ADMIN')">
+			<form id="form" action="/voto" method="post">
+				<div class="form-group">
+					<c:if test="${not empty eleicoes}">
+						<label>Para cadastrar um novo voto, selecione a eleição:</label>
+						<select id="eleicoes" class="form-control" name="eleicao.id" onchange="validaSelectEleicoes()">
+							<option>Escolha uma opção</option>
+							<c:forEach var="e" items="${eleicoes}" >
+								<option value="${e.id}">${e.descricao}</option>
+							</c:forEach>
+						</select>
+						
+						<br />
+						
+						<button id="botao" type="submit" class="btn btn-primary">Novo</button>
+					</c:if>
+	
+					<c:if test="${empty eleicoes}">
+						<c:set var="botao" value="disabled" />
+						<h5>Não existem eleições cadastradas!!!</h5>
+						<h5>Cadastre eleições para cadastrar novos votos.</h5>
+					</c:if>
+				</div>
+			</form>
+		</security:authorize>
 
 		<hr>
 
@@ -53,7 +56,9 @@
 						<th>Eleitor</th>
 						<th>Eleição</th>
 						<th>Candidato</th>
-						<th></th>
+						<security:authorize access="hasRole('ADMIN')">
+				        	<th></th>
+				        </security:authorize>
 					</tr>
 				</thead>
 				<tbody>
@@ -65,7 +70,9 @@
 							<td>${s.eleitor.nome}</td>
 							<td>${s.eleicao.descricao}</td>
 							<td>${s.candidato.nome}</td>
-							<td><a href="/voto/${s.id}/excluir">excluir</a></td>
+							<security:authorize access="hasRole('ADMIN')">
+								<td><a href="/voto/${s.id}/excluir">excluir</a></td>
+							</security:authorize>
 						</tr>
 					</c:forEach>
 				</tbody>

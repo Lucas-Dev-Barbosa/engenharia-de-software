@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.app.client.EstabelecimentoClient;
-import br.edu.infnet.app.client.UsuarioClient;
 import br.edu.infnet.app.model.domain.Estabelecimento;
+import br.edu.infnet.app.model.repository.EstabelecimentoRepository;
 
 @Service
 public class EstabelecimentoService {
@@ -16,7 +16,10 @@ public class EstabelecimentoService {
 	private EstabelecimentoClient client;
 	
 	@Autowired
-	private UsuarioClient usuarioCliente;
+	private UsuarioService usuarioService;
+	
+	@Autowired
+	private EstabelecimentoRepository repository;
 
 	public List<Estabelecimento> listaEstabelecimentos() {
 		return client.obterLista();
@@ -27,13 +30,13 @@ public class EstabelecimentoService {
 	}
 
 	public void incluir(Estabelecimento estabelecimento) {
-		client.incluir(estabelecimento);
+		estabelecimento.setSenha(usuarioService.getPasswordEncoded(estabelecimento.getSenha()));
+		repository.save(estabelecimento);
 	}
 
 	public void excluir(Integer idEstabelecimento) {
-		usuarioCliente.excluir(idEstabelecimento);
+		repository.deleteById(idEstabelecimento);
 	}
 
-	
 	
 }

@@ -9,12 +9,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.infnet.app.model.domain.Estabelecimento;
 import br.edu.infnet.app.model.domain.Funcionario;
+import br.edu.infnet.app.model.domain.Role;
 import br.edu.infnet.app.model.service.EstabelecimentoService;
 import br.edu.infnet.app.model.service.FuncionarioService;
+import br.edu.infnet.app.model.service.RoleService;
 
 @Controller
 @RequestMapping("/funcionarios")
@@ -25,6 +28,9 @@ public class FuncionarioController {
 	
 	@Autowired
 	private EstabelecimentoService estabelecimentoService;
+	
+	@Autowired
+	private RoleService roleService;
 
 	@GetMapping
 	public String lista(Model model) {
@@ -34,12 +40,15 @@ public class FuncionarioController {
 		List<Estabelecimento> listaEstabelecimento = estabelecimentoService.listaEstabelecimentos();
 		model.addAttribute("listaEstabelecimento", listaEstabelecimento);
 		
+		model.addAttribute("roles", roleService.obterLista());
+		
 		
 		return "funcionario/lista";
 	}
 	
 	@PostMapping(value = "/incluir")
-	public String incluir(Funcionario funcionario) {
+	public String incluir(Funcionario funcionario, @RequestParam Integer acesso) {
+		funcionario.setRoles(List.of(new Role(acesso)));
 		service.incluir(funcionario);
 		
 		return "redirect:/funcionarios";

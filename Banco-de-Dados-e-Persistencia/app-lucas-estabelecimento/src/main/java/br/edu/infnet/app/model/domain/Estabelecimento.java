@@ -2,12 +2,25 @@ package br.edu.infnet.app.model.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name = "TEstabelecimento", uniqueConstraints = @UniqueConstraint(columnNames={"cnpj"}))
 public class Estabelecimento extends Usuario {
+	
+	private static final long serialVersionUID = 1L;
 
 	private String cnpj;
 	private String endereco;
 	private Boolean edTech;
 
+	@OneToMany(cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@JoinColumn(name = "idEstabelecimento")
 	private List<Funcionario> funcionarios;
 	
 	public String getCnpj() {

@@ -16,10 +16,13 @@
 	</div>
 	
 	<div class="container mt-3">
-	  <h3>${error} - Status: ${status}</h3>
-	  <c:forEach var="m" items="${message}">
-	  	<p>${m}</p>
-	  </c:forEach>
+	  	<h3>Algum erro ocorreu</h3>
+		<c:if test="${error != 'None'}">
+			<h3>${error}- Status: ${status}</h3>
+			<c:forEach var="m" items="${message}">
+				<p>${m}</p>
+			</c:forEach>
+		</c:if>
 	</div>
 	
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

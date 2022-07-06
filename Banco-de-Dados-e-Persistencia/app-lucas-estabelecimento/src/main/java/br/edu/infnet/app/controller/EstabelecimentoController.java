@@ -14,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.edu.infnet.app.model.domain.Estabelecimento;
+import br.edu.infnet.app.model.domain.Role;
 import br.edu.infnet.app.model.service.EstabelecimentoService;
+import br.edu.infnet.app.model.service.RoleService;
 
 @Controller
 @RequestMapping("/estabelecimentos")
@@ -22,6 +24,9 @@ public class EstabelecimentoController {
 	
 	@Autowired
 	private EstabelecimentoService service;
+	
+	@Autowired
+	private RoleService roleService;
 
 	@GetMapping
 	public String lista(Model model, @RequestParam("modo") Optional<String> modo) {
@@ -31,12 +36,14 @@ public class EstabelecimentoController {
 				model.addAttribute(modo.get(), listaEstabelecimentos);
 			}
 		}
+		model.addAttribute("roles", roleService.obterLista());
 		
 		return "estabelecimento/lista";
 	}
 	
 	@PostMapping(value = "/incluir")
-	public String incluir(Estabelecimento estabelecimento) {
+	public String incluir(Estabelecimento estabelecimento, @RequestParam Integer acesso) {
+		estabelecimento.setRoles(List.of(new Role(acesso)));
 		service.incluir(estabelecimento);
 		
 		return "redirect:/estabelecimentos?modo=listaCrua";

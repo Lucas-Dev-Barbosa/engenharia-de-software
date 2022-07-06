@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -15,7 +16,9 @@
 	<div class="container mt-3">
 		<h2>Funcionários</h2>
 
-		<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroFuncionarioModal">Incluir Funcionário</a>
+		<security:authorize access="hasRole('ADMIN')">
+			<a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#cadastroFuncionarioModal">Incluir Funcionário</a>
+		</security:authorize>
 		<hr>
 
 		<c:if test="${not empty listaFuncionario}">
@@ -30,7 +33,9 @@
 						<th>E-mail</th>
 						<th>Telefone</th>
 						<th>Estabelecimento</th>
-						<th></th>
+						<security:authorize access="hasRole('ADMIN')">
+				        	<th></th>
+				        </security:authorize>
 					</tr>
 				</thead>
 				<tbody>
@@ -42,7 +47,9 @@
 							<td>${f.email}</td>
 							<td>${f.telefone}</td>
 							<td>${f.estabelecimento.nome}</td>
-							<td><a href="/funcionarios/${f.id}/preExcluir">excluir</a></td>
+							<security:authorize access="hasRole('ADMIN')">
+								<td><a href="/funcionarios/${f.id}/preExcluir">excluir</a></td>
+							</security:authorize>
 						</tr>
 					</c:forEach>
 				</tbody>
@@ -103,6 +110,15 @@
 				</select>
 	          </div>
 	          
+	          <div class="mb-3 mt-3">
+					<label>Acesso:</label>
+					<select class="form-control" name="acesso">
+						<c:forEach var="r" items="${roles}">
+							<option value="${r.id}">${r.nome}</option>
+						</c:forEach>
+					</select>
+				</div>
+	          
 	          <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
 		        <button id="cadastrarFuncionario" type="submit" class="btn btn-primary">Cadastrar</button>
@@ -126,7 +142,7 @@
 		      </div>
 		      <div class="modal-footer">
 		        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-		        <a class="btn btn-primary" href="/estabelecimentos/${idFuncionarioExcluir}/excluir">Excluir</a>
+		        <a class="btn btn-primary" href="/funcionarios/${idFuncionarioExcluir}/excluir">Excluir</a>
 		      </div>
 		    </div>
 		  </div>

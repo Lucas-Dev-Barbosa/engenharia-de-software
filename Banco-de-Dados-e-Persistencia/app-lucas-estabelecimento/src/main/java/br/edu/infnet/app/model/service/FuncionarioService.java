@@ -7,9 +7,9 @@ import org.springframework.stereotype.Service;
 
 import br.edu.infnet.app.client.EstabelecimentoClient;
 import br.edu.infnet.app.client.FuncionarioClient;
-import br.edu.infnet.app.client.UsuarioClient;
 import br.edu.infnet.app.model.domain.Estabelecimento;
 import br.edu.infnet.app.model.domain.Funcionario;
+import br.edu.infnet.app.model.repository.FuncionarioRepository;
 
 @Service
 public class FuncionarioService {
@@ -18,10 +18,13 @@ public class FuncionarioService {
 	private FuncionarioClient client;
 	
 	@Autowired
-	private UsuarioClient usuarioCliente;
+	private UsuarioService usuarioService;
 	
 	@Autowired
 	private EstabelecimentoClient estabelecimentoClient;
+	
+	@Autowired
+	private FuncionarioRepository repository;
 
 	public List<Funcionario> listaFuncionarios() {
 		List<Funcionario> listaFuncionarios = client.obterLista();
@@ -36,11 +39,12 @@ public class FuncionarioService {
 	}
 
 	public void incluir(Funcionario funcionario) {
-		client.incluir(funcionario);
+		funcionario.setSenha(usuarioService.getPasswordEncoded(funcionario.getSenha()));
+		repository.save(funcionario);
 	}
 
-	public void excluir(Integer idEstabelecimento) {
-		usuarioCliente.excluir(idEstabelecimento);
+	public void excluir(Integer idFuncionario) {
+		repository.deleteById(idFuncionario);
 	}
 	
 }

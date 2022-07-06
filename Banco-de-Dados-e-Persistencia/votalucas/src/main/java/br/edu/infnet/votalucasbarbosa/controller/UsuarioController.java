@@ -1,4 +1,4 @@
-package br.edu.infnet.app.controller;
+package br.edu.infnet.votalucasbarbosa.controller;
 
 import java.util.List;
 
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import br.edu.infnet.app.model.domain.Role;
-import br.edu.infnet.app.model.domain.Usuario;
-import br.edu.infnet.app.model.service.RoleService;
-import br.edu.infnet.app.model.service.UsuarioService;
+import br.edu.infnet.votalucasbarbosa.model.domain.Role;
+import br.edu.infnet.votalucasbarbosa.model.domain.Usuario;
+import br.edu.infnet.votalucasbarbosa.model.domain.service.RoleService;
+import br.edu.infnet.votalucasbarbosa.model.domain.service.UsuarioService;
 
 @Controller
 public class UsuarioController {

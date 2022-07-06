@@ -12,6 +12,8 @@
 			<li><a href="/eleicoes">Eleição</a></li>
 			<li><a href="/eleitores">Eleitor</a></li>
 			<li><a href="/votos">Voto</a></li>
+			<li><a href="/usuario">Cadastro de Usuário</a></li>
+			<li><a href="/logout">Logout</a></li>
 		</ul>
 	</div>
 </nav>
