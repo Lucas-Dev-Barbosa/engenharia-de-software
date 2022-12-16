@@ -1,0 +1,281 @@
+{
+	"info": {
+		"_postman_id": "b0f6249e-7072-4b9f-8c46-dc5c1b376ebd",
+		"name": "Ticket-Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13440132"
+	},
+	"item": [
+		{
+			"name": "info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/info",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						"info"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "abre-ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"titulo\": \"Novo Ticket\",\r\n    \"customer\": {\r\n        \"name\": {\r\n            \"firstName\": \"Lucas\",\r\n            \"lastName\": \"Barbosa\"\r\n        },\r\n        \"email\": \"lucas.barbosa@ticket.com\",\r\n        \"cargo\": \"CLIENTE\"\r\n    },\r\n    \"products\": [\r\n        \"Java\",\r\n        \"Kotlin\",\r\n        \"C#\",\r\n        \"Javascript\"\r\n    ],\r\n    \"message\": \"Abertura de novo ticket\",\r\n    \"priority\": \"LOW\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/abre-ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						"abre-ticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adiciona-mensagem",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\": {\r\n        \"name\": {\r\n            \"firstName\": \"Lucas\",\r\n            \"lastName\": \"Barbosa\"\r\n        },\r\n        \"email\": \"lucas.barbosa@ticket.com\",\r\n        \"cargo\": \"CLIENTE\"\r\n    },\r\n    \"body\": \"Colocando uma nota para a ciência do gerente\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/149034452/adiciona-mensagem",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						"149034452",
+						"adiciona-mensagem"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vincula-ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": {\r\n            \"firstName\": \"Carlos\",\r\n            \"lastName\": \"De Souza\"\r\n    },\r\n    \"email\": \"carlos.souza@ticket.com\",\r\n    \"cargo\": \"ATENDENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/726894415/vincula-ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						"726894415",
+						"vincula-ticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "escala-ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": {\r\n            \"firstName\": \"Sergio\",\r\n            \"lastName\": \"Gama\"\r\n    },\r\n    \"email\": \"sergio.gama@ticket.com\",\r\n    \"cargo\": \"GERENTE\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/149034452/escala-ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						"149034452",
+						"escala-ticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "fecha-ticket",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"from\": {\r\n        \"name\": {\r\n            \"firstName\": \"Lucas\",\r\n            \"lastName\": \"Barbosa\"\r\n        },\r\n        \"email\": \"lucas.barbosa@ticket.com\",\r\n        \"cargo\": \"CLIENTE\"\r\n    },\r\n    \"body\": \"Fechando ticket como resolvido\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/149034452/fecha-ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						"149034452",
+						"fecha-ticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "lista-tickets",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "obtem-ticket",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/504590731",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						"504590731"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reabre-ticket",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/149034452/reabre-ticket",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						"149034452",
+						"reabre-ticket"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "processa-fechamento-ticket",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/ddd/api/ticket/726894415/processa-fechamento",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ddd",
+						"api",
+						"ticket",
+						"726894415",
+						"processa-fechamento"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
