@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Pedido {
     
-    private String pedido;
+    private String descricao;
     private LocalDateTime data;
     private boolean web;
 
