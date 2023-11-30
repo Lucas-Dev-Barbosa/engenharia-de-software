@@ -3,8 +3,11 @@ package br.edu.infnet.lucas.model.domain;
 public abstract class Produto {
     
     private String nome;
-    private float valor;
+    private double valor;
     private int codigo;
+    private char tipo;
+
+    public abstract String getDescricaoProduto();
 
     public String getNome() {
         return nome;
@@ -14,11 +17,11 @@ public abstract class Produto {
         this.nome = nome;
     }
 
-    public float getValor() {
+    public double getValor() {
         return valor;
     }
 
-    public void setValor(float valor) {
+    public void setValor(double valor) {
         this.valor = valor;
     }
 
@@ -30,4 +33,21 @@ public abstract class Produto {
         this.codigo = codigo;
     }
 
+    public char getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(char tipo) {
+        this.tipo = tipo;this.tipo = tipo;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "nome='" + nome + '\'' +
+                ", valor=" + valor +
+                ", codigo=" + codigo +
+                ", tipo=" + tipo +
+                '}';
+    }
 }

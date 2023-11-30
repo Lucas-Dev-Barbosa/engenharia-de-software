@@ -4,7 +4,7 @@ public class Comida extends Produto {
     
     private float peso;
     private boolean vegano;
-    private String ingredientes;    
+    private String[] ingredientes;
 
     public float getPeso() {
         return peso;
@@ -22,12 +22,27 @@ public class Comida extends Produto {
         this.vegano = vegano;
     }
 
-    public String getIngredientes() {
+    public String[] getIngredientes() {
         return ingredientes;
     }
 
-    public void setIngredientes(String ingredientes) {
+    public void setIngredientes(String[] ingredientes) {
         this.ingredientes = ingredientes;
     }
 
+    @Override
+    public String getDescricaoProduto() {
+        return "O peso da comida e de " + this.peso + "KG."
+                + (this.vegano ? "A comida e vegana" : "A comida nao e vegana"
+                + " e possui os seguintes ingredientes: " + this.ingredientes);
+    }
+
+    @Override
+    public String toString() {
+        return "Comida{" +
+                "peso=" + peso +
+                ", vegano=" + vegano +
+                ", ingredientes='" + ingredientes + '\'' +
+                '}';
+    }
 }
