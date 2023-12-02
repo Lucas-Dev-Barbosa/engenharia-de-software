@@ -12,45 +12,33 @@ public class Pedido extends AbstractEntity {
     private Solicitante solicitante;
     private List<Produto> listaProdutos;
 
-    public String getDescricao() {
-        return descricao;
+    public Pedido(String descricao, LocalDateTime data, boolean web, Solicitante solicitante, List<Produto> listaProdutos) {
+        this.descricao = descricao;
+        this.data = data;
+        this.web = web;
+
+        this.solicitante = solicitante;
+        this.listaProdutos = listaProdutos;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public String getDescricao() {
+        return descricao;
     }
 
     public LocalDateTime getData() {
         return data;
     }
 
-    public void setData(LocalDateTime data) {
-        this.data = data;
-    }
-
     public boolean isWeb() {
         return web;
-    }
-
-    public void setWeb(boolean web) {
-        this.web = web;
     }
 
     public Solicitante getSolicitante() {
         return solicitante;
     }
 
-    public void setSolicitante(Solicitante solicitante) {
-        this.solicitante = solicitante;
-        this.setId(solicitante.getCpf());
-    }
-
     public List<Produto> getListaProdutos() {
         return listaProdutos;
-    }
-
-    public void setListaProdutos(List<Produto> listaProdutos) {
-        this.listaProdutos = listaProdutos;
     }
 
     @Override

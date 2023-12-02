@@ -1,12 +1,15 @@
 package br.edu.infnet.lucas.model.domain;
 
+import br.edu.infnet.lucas.model.domain.vos.Cpf;
+import br.edu.infnet.lucas.model.domain.vos.Email;
+
 public class Solicitante {
 
     private String nome;
-    private String cpf;
-    private String email;
+    private Cpf cpf;
+    private Email email;
 
-    public Solicitante(String nome, String cpf, String email) {
+    public Solicitante(String nome, Cpf cpf, Email email) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
@@ -16,11 +19,11 @@ public class Solicitante {
         return nome;
     }
 
-    public String getCpf() {
+    public Cpf getCpf() {
         return cpf;
     }
 
-    public String getEmail() {
+    public Email getEmail() {
         return email;
     }
 
