@@ -31,14 +31,14 @@
           "vegano": true,
           "ingredientes": "arroz, feijão, salada, cane"
         },
-      {
-        "nome": "sobremesa",
-        "valor": 15.0,
-        "codigo": 789,
-        "tipo": "s",
-        "quantidade": 2,
-        "doce": true,
-        "informacao": "E necessario reduzir o nivel de acuar para este cliente"
-      }
+        {
+          "nome": "sobremesa",
+          "valor": 15.0,
+          "codigo": 789,
+          "tipo": "s",
+          "quantidade": 2,
+          "doce": true,
+          "informacao": "E necessario reduzir o nivel de acuar para este cliente"
+        }
       ]
     }
