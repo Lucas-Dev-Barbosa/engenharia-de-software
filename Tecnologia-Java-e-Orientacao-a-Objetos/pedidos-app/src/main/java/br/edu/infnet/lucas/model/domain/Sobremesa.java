@@ -33,8 +33,8 @@ public class Sobremesa extends Produto {
     @Override
     public String getDescricaoProduto() {
         return "Esta sobremesa tem a quantidade de " + this.quantidade + "."
-                + (this.doce ? "Ela e doce" : "Ela nao e doce")
-                + "Sua informacao e " + this.informacao;
+                + (this.doce ? " Ela e doce" : " Ela nao e doce")
+                + "Sua informacao e [" + this.informacao + "]";
     }
 
     @Override

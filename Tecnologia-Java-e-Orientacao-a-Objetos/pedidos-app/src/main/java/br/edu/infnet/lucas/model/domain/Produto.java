@@ -1,5 +1,9 @@
 package br.edu.infnet.lucas.model.domain;
 
+import br.edu.infnet.lucas.file.json.deserializer.ProdutoDeserializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+
+@JsonDeserialize(using = ProdutoDeserializer.class)
 public abstract class Produto {
     
     private String nome;

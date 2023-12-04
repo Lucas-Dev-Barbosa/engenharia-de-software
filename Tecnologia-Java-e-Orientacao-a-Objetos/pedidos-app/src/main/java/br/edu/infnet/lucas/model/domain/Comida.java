@@ -1,7 +1,9 @@
 package br.edu.infnet.lucas.model.domain;
 
+import java.util.Arrays;
+
 public class Comida extends Produto {
-    
+
     private float peso;
     private boolean vegano;
     private String[] ingredientes;
@@ -33,8 +35,8 @@ public class Comida extends Produto {
     @Override
     public String getDescricaoProduto() {
         return "O peso da comida e de " + this.peso + "KG."
-                + (this.vegano ? "A comida e vegana" : "A comida nao e vegana"
-                + " e possui os seguintes ingredientes: " + this.ingredientes);
+                + (this.vegano ? " A comida e vegana" : " A comida nao e vegana"
+                + " e possui os seguintes ingredientes: " + Arrays.toString(this.ingredientes));
     }
 
     @Override
@@ -42,7 +44,7 @@ public class Comida extends Produto {
         return "Comida{" +
                 "peso=" + peso +
                 ", vegano=" + vegano +
-                ", ingredientes='" + ingredientes + '\'' +
+                ", ingredientes='" + Arrays.toString(ingredientes) + '\'' +
                 '}';
     }
 }

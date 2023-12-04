@@ -2,6 +2,7 @@ package br.edu.infnet.lucas.model.domain;
 
 import br.edu.infnet.lucas.model.domain.vos.Cpf;
 import br.edu.infnet.lucas.model.domain.vos.Email;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Solicitante {
 
@@ -9,7 +10,10 @@ public class Solicitante {
     private Cpf cpf;
     private Email email;
 
-    public Solicitante(String nome, Cpf cpf, Email email) {
+    public Solicitante(
+            @JsonProperty("nome") String nome,
+            @JsonProperty("cpf") Cpf cpf,
+            @JsonProperty("email") Email email) {
         this.nome = nome;
         this.cpf = cpf;
         this.email = email;
