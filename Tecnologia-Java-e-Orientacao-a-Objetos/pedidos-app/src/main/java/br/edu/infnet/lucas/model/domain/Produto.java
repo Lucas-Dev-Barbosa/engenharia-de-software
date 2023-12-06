@@ -11,6 +11,8 @@ public abstract class Produto {
     private int codigo;
     private char tipo;
 
+    private byte[] foto;
+
     public abstract String getDescricaoProduto();
 
     public String getNome() {
@@ -42,7 +44,15 @@ public abstract class Produto {
     }
 
     public void setTipo(char tipo) {
-        this.tipo = tipo;this.tipo = tipo;
+        this.tipo = tipo;
+    }
+
+    public byte[] getFoto() {
+        return foto;
+    }
+
+    public void setFoto(byte[] foto) {
+        this.foto = foto;
     }
 
     @Override

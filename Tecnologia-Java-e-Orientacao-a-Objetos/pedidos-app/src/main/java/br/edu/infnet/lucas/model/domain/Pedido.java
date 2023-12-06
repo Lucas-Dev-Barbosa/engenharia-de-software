@@ -29,6 +29,8 @@ public class Pedido extends AbstractEntity {
 
         this.solicitante = solicitante;
         this.listaProdutos = listaProdutos;
+
+        this.setId(solicitante.getCpf().getCpf());
     }
 
     public String getDescricao() {

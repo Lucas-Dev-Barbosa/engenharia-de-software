@@ -8,8 +8,10 @@ public abstract class AbstractRepository<T extends AbstractEntity> {
 
     protected Map<String, T> repositorio = new HashMap<>();
 
-    public T getById(String id) {
-        return repositorio.get(id);
+    public Optional<T> getById(String id) {
+        if(repositorio.containsKey(id))
+            return Optional.of(repositorio.get(id));
+        return Optional.empty();
     }
 
     public Set<T> getList() {
@@ -26,7 +28,10 @@ public abstract class AbstractRepository<T extends AbstractEntity> {
         return repositorio.get(item.getId());
     }
 
-    public void delete(Integer id) {
+    public void delete(String id) {
+        if (!repositorio.containsKey(id)) {
+            return;
+        }
         repositorio.remove(id);
     }
 
