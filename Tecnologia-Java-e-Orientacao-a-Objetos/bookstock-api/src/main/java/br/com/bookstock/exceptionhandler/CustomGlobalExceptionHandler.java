@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import br.com.bookstock.exception.EstoqueException;
+import br.com.bookstock.exception.BookStockException;
 
 @RestControllerAdvice
 public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler {
@@ -54,8 +54,8 @@ public class CustomGlobalExceptionHandler extends ResponseEntityExceptionHandler
 		return getResponseEntity(HttpStatus.BAD_REQUEST, "Não foi possível encontrar este registro em nossa base");
 	}
 
-	@ExceptionHandler(EstoqueException.class)
-	public ResponseEntity<Object> estoqueException(EstoqueException ex) throws IOException {
+	@ExceptionHandler(BookStockException.class)
+	public ResponseEntity<Object> estoqueException(BookStockException ex) throws IOException {
 		return getResponseEntity(ex.getStatus(), ex.getMessage());
 	}
 

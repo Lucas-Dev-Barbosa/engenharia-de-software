@@ -1,4 +1,4 @@
-package br.com.bookstock.model.domain;
+package br.com.bookstock.model.domain.dto.request;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -6,21 +6,6 @@ import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.DiscriminatorType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -36,38 +21,25 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
-@Table(name = "tb_livro", uniqueConstraints = @UniqueConstraint(columnNames = { "isbn" }))
-@SuppressWarnings("serial")
-public abstract class Livro extends AbstractEntity {
+public abstract class LivroDTORequest {
 
 	@NotBlank(message = "Digite o título.")
 	private String titulo;
 
 	@NotBlank(message = "Digite a sinopse do livro.")
-	@Column(columnDefinition = "TEXT")
 	private String sinopse;
 
-	@ManyToMany
-	@JoinTable(name = "tb_livro_autor", joinColumns = {@JoinColumn(name = "livroId")}, inverseJoinColumns = {@JoinColumn(name = "autorId")})
-	@NotNull(message = "Digite as informacoes do autor.")
-	private List<Autor> autores;
+	@NotNull(message = "O livro precisa de pelo menos um autor")
+	private List<Long> autores;
 
 	@NotBlank(message = "Digite o ISBN.")
-	@Column(length = 20)
 	private String isbn;
 
-	@NotNull(message = "Digite as informacoes da editora.")
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "idEditora")
-	private Editora editora;
+	@NotNull(message = "Digite a identificacao da editora.")
+	private Long editora;
 
-	@Column(columnDefinition = "LONGBLOB")
 	private byte[] fotoCapa;
 
-	@Column(columnDefinition = "DECIMAL(19,2)")
 	@NotNull(message = "Informe o preço.")
 	private BigDecimal preco;
 
@@ -79,12 +51,9 @@ public abstract class Livro extends AbstractEntity {
 	@NotNull(message = "Digite o número de páginas")
 	private Integer numeroPaginas;
 	
-	@Column(insertable=false, updatable=false)
-    private String tipo;
+	private String tipo;
 	
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "estoqueId", referencedColumnName = "id")
-	private Estoque estoque;
+	private EstoqueDTORequest estoque = new EstoqueDTORequest();
 
 	public String getPreco() {
 		if (this.preco != null)

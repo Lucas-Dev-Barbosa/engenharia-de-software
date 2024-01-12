@@ -1,11 +1,7 @@
-package br.com.bookstock.model.domain;
+package br.com.bookstock.model.domain.dto.request;
 
 import java.text.ParseException;
-import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
@@ -13,10 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
-@Table(name = "tb_editora")
-@SuppressWarnings("serial")
-public class Editora extends AbstractEntity {
+public class EditoraDTORequest {
 
 	@NotBlank(message = "Digite a razao social da editora.")
 	private String razaoSocial;
@@ -26,9 +19,6 @@ public class Editora extends AbstractEntity {
 	
 	@NotBlank(message = "Digite o cnpj da editora.")
 	private String cnpj;
-	
-	@OneToMany(mappedBy = "editora")
-	private List<Livro> livros;
 	
 	public void setRazaoSocial(String razaoSocial) throws ParseException {
 		if (razaoSocial != null && !razaoSocial.isEmpty())
