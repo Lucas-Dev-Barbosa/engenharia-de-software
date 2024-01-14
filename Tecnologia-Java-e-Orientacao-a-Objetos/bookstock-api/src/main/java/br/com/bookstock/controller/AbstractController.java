@@ -6,17 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import lombok.Getter;
 
 @Getter
-public abstract class AbstractController<REQ, RES> {
+public abstract class AbstractController<REQ, RES, ENT> {
 	
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public Object convertDtoToEntity(REQ typeParameterReq) {
-		return modelMapper.map(typeParameterReq, Object.class);
+	public ENT convertDtoToEntity(REQ source, Class<ENT> destination) {
+		return modelMapper.map(source, destination);
 	}
 	
-	public RES convertEntityToDto(Object obj, Class<RES> typeParameterRes) {
-		return modelMapper.map(obj, typeParameterRes);
+	public RES convertEntityToDto(ENT source, Class<RES> destination) {
+		return modelMapper.map(source, destination);
 	}
 
 }

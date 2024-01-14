@@ -1,0 +1,10 @@
+2024-01-13 21:31:53 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM TB_LIVRO \000d\000a[*]SELECT * FROM TB_autor \000d\000aSELECT * FROM TB_editora"; SQL statement:
+SELECT * FROM TB_LIVRO 
+SELECT * FROM TB_autor 
+SELECT * FROM TB_editora [42000-212]
+2024-01-13 21:32:03 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "SELECT * FROM TB_LIVRO \000d\000a[*]SELECT * FROM TB_autor \000d\000aSELECT * FROM TB_editora"; SQL statement:
+SELECT * FROM TB_LIVRO 
+SELECT * FROM TB_autor 
+SELECT * FROM TB_editora [42000-212]

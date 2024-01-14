@@ -27,7 +27,7 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @RestController
 @RequestMapping("/livrofisico")
 @Tag(name = "Livro Endpoint")
-public class LivroFisicoController extends AbstractController<LivroFisicoDTORequest, LivroFisicoDTOResponse>{
+public class LivroFisicoController extends AbstractController<LivroFisicoDTORequest, LivroFisicoDTOResponse, LivroFisico>{
 
 	@Autowired
 	private LivroFisicoService service;
@@ -37,7 +37,7 @@ public class LivroFisicoController extends AbstractController<LivroFisicoDTORequ
 	public List<LivroFisicoDTOResponse> listarLivros() {
 		return service.getListaLivros()
 				.stream()
-				.map(livro -> convertEntityToDto(livro, LivroFisicoDTOResponse.class))
+				.map(livroFisico -> convertEntityToDto(livroFisico, LivroFisicoDTOResponse.class))
 				.collect(Collectors.toList());
 	}
 	
@@ -51,7 +51,7 @@ public class LivroFisicoController extends AbstractController<LivroFisicoDTORequ
 	@ResponseStatus(code = HttpStatus.CREATED)
 	@Tag(name = "cadastrarLivro", description = "Realiza o cadastramento de um livro no estoque. Será criado um novo registro na base de estoque")
 	public LivroFisicoDTOResponse cadastrarLivro(@Valid @RequestBody LivroFisicoDTORequest livroRequest) throws BookStockException {
-		LivroFisico livro = (LivroFisico) convertDtoToEntity(livroRequest);
+		LivroFisico livro = convertDtoToEntity(livroRequest, LivroFisico.class);
 		LivroFisicoDTOResponse newLivro = convertEntityToDto(service.salvarLivro(livro), LivroFisicoDTOResponse.class);
 		return newLivro;
 	}
@@ -59,8 +59,8 @@ public class LivroFisicoController extends AbstractController<LivroFisicoDTORequ
 	@PutMapping
 	@ResponseStatus(code = HttpStatus.OK)
 	@Tag(name = "editarLivro", description = "Realiza alteração de alguma informação de um livro no estoque")
-	public void editarLivro(@Valid @RequestBody LivroFisico livro) {
-		service.editarLivro(livro);
+	public void editarLivro(@Valid @RequestBody LivroFisicoDTORequest livro) throws BookStockException {
+		service.editarLivro(convertDtoToEntity(livro, LivroFisico.class));
 	}
 	
 	@DeleteMapping("/{id}")

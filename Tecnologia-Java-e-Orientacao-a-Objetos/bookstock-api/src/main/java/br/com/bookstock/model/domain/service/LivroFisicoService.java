@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.bookstock.exception.BookStockException;
+import br.com.bookstock.model.domain.Autor;
+import br.com.bookstock.model.domain.Estoque;
 import br.com.bookstock.model.domain.Livro;
 import br.com.bookstock.model.domain.LivroFisico;
+import br.com.bookstock.model.domain.repository.AutorRepository;
+import br.com.bookstock.model.domain.repository.EditoraRepository;
 import br.com.bookstock.model.domain.repository.LivroFisicoRepository;
 import lombok.extern.java.Log;
 
@@ -18,9 +22,14 @@ import lombok.extern.java.Log;
 public class LivroFisicoService {
 
 	private final LivroFisicoRepository repository;
+	private final AutorRepository autorRepository;
+	private final EditoraRepository editoraRepository;
 	
-	public LivroFisicoService(LivroFisicoRepository repository) {
+	
+	public LivroFisicoService(LivroFisicoRepository repository, AutorRepository autorRepository, EditoraRepository editoraRepository) {
 		this.repository = repository;
+		this.autorRepository = autorRepository;
+		this.editoraRepository = editoraRepository;
 	}
 
 	public List<LivroFisico> getListaLivros() {
@@ -33,42 +42,30 @@ public class LivroFisicoService {
 
 	@Transactional(readOnly = false)
 	public LivroFisico salvarLivro(LivroFisico livro) throws BookStockException {
+		validaAutores(livro);
+		validaEditora(livro);
+		
+		livro.setEstoque(new Estoque());
+		
 		return repository.save(livro);
-		
-//		Map<String, Long> livroMap = new HashMap<>();
-//		livroMap.put("id-livro", newLivro.getId());
-//		
-//		ResponseEntity<String> estoqueEntity = null;
-//		try {
-////			estoqueEntity = restTemplate.postForEntity(PATH_API_ESTOQUE + "/livro", livroMap, String.class);
-//		} catch (RestClientException e) {
-//			processaErroGeracaoEstoqueClient(livro.getId(), e.getMessage());
-//		}
-//
-//		if (estoqueEntity.getStatusCodeValue() != 201)
-//			processaErroGeracaoEstoqueClient(livro.getId(), "Codigo do status retornado[" + estoqueEntity.getStatusCodeValue() + "]");
-//
-//		String estoque = estoqueEntity.getBody();
-//		log.info("Estoque gerado para o livro:");
-//		log.info(estoque);
-		
-//		return newLivro;
-	}
-
-	private void processaErroGeracaoEstoqueClient(Long id, String message) throws BookStockException {
-		String erro = "Erro no processo de geração do estoque, excluindo livro da base.";
-		log.info(erro);
-		log.info(message);
-		repository.deleteById(id);
-		throw new BookStockException(erro);
 	}
 
 	@Transactional(readOnly = false)
-	public LivroFisico editarLivro(LivroFisico livro) {
-		if (livro != null)
-			log.info("Editando informacoes do livro [" + livro.getTitulo() + "] no estoque");
+	public LivroFisico editarLivro(LivroFisico livro) throws BookStockException {
+		validaAutores(livro);
+		validaEditora(livro);
 
 		return repository.save(livro);
+	}
+	
+	private void validaAutores(LivroFisico livro) throws BookStockException {
+		for(Autor autor : livro.getAutores()) {
+			autorRepository.findById(autor.getId()).orElseThrow(() -> new BookStockException("O autor nao existe"));
+		}
+ 	}
+	
+	private void validaEditora(LivroFisico livro) throws BookStockException {
+		editoraRepository.findById(livro.getEditora().getId()).orElseThrow(() -> new BookStockException("A editora nao existe"));
 	}
 
 	@Transactional(readOnly = false)

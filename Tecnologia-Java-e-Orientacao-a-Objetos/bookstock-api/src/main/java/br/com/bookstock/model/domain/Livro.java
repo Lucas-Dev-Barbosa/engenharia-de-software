@@ -21,11 +21,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -43,23 +40,18 @@ import lombok.Setter;
 @SuppressWarnings("serial")
 public abstract class Livro extends AbstractEntity {
 
-	@NotBlank(message = "Digite o título.")
 	private String titulo;
 
-	@NotBlank(message = "Digite a sinopse do livro.")
 	@Column(columnDefinition = "TEXT")
 	private String sinopse;
 
 	@ManyToMany
 	@JoinTable(name = "tb_livro_autor", joinColumns = {@JoinColumn(name = "livroId")}, inverseJoinColumns = {@JoinColumn(name = "autorId")})
-	@NotNull(message = "Digite as informacoes do autor.")
 	private List<Autor> autores;
 
-	@NotBlank(message = "Digite o ISBN.")
 	@Column(length = 20)
 	private String isbn;
 
-	@NotNull(message = "Digite as informacoes da editora.")
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "idEditora")
 	private Editora editora;
@@ -68,15 +60,11 @@ public abstract class Livro extends AbstractEntity {
 	private byte[] fotoCapa;
 
 	@Column(columnDefinition = "DECIMAL(19,2)")
-	@NotNull(message = "Informe o preço.")
 	private BigDecimal preco;
 
 	@NotNull(message = "Informe a data de publicação.")
-	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dataPublicacao;
 
-	@Min(value = 1, message = "O número de páginas tem que ser maior do que zero.")
-	@NotNull(message = "Digite o número de páginas")
 	private Integer numeroPaginas;
 	
 	@Column(insertable=false, updatable=false)

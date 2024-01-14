@@ -6,7 +6,7 @@ public class BookStockException extends Exception {
 
 	private static final long serialVersionUID = 1L;
 	
-	private HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
+	private HttpStatus status = HttpStatus.BAD_REQUEST;
 	
 	public BookStockException(String message) {
 		super(message);
