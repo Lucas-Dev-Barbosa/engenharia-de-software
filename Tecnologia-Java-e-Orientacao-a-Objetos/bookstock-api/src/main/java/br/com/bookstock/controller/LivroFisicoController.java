@@ -5,7 +5,6 @@ import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,6 +21,7 @@ import br.com.bookstock.model.domain.LivroFisico;
 import br.com.bookstock.model.domain.dto.request.LivroFisicoDTORequest;
 import br.com.bookstock.model.domain.dto.response.LivroFisicoDTOResponse;
 import br.com.bookstock.model.domain.service.LivroFisicoService;
+import br.com.bookstock.model.domain.service.TituloService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -29,13 +29,16 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Tag(name = "Livro Endpoint")
 public class LivroFisicoController extends AbstractController<LivroFisicoDTORequest, LivroFisicoDTOResponse, LivroFisico>{
 
-	@Autowired
-	private LivroFisicoService service;
+	private final TituloService<LivroFisico> service;
+	
+	public LivroFisicoController(LivroFisicoService service) {
+		this.service = service;
+	}
 
 	@GetMapping
 	@Tag(name = "listarLivros", description = "Retorna uma lista com todos os livros no estoque")
 	public List<LivroFisicoDTOResponse> listarLivros() {
-		return service.getListaLivros()
+		return service.getListaTitulos()
 				.stream()
 				.map(livroFisico -> convertEntityToDto(livroFisico, LivroFisicoDTOResponse.class))
 				.collect(Collectors.toList());
@@ -44,7 +47,7 @@ public class LivroFisicoController extends AbstractController<LivroFisicoDTORequ
 	@GetMapping("/{id}")
 	@Tag(name = "buscarLivroPorId", description = "Retorna um livro pelo seu id")
 	public LivroFisicoDTOResponse buscarLivroPorId(@PathVariable Long id) throws BookStockException {
-		return convertEntityToDto(service.obterLivroPorId(id), LivroFisicoDTOResponse.class);
+		return convertEntityToDto(service.obterTituloPorId(id), LivroFisicoDTOResponse.class);
 	}
 
 	@PostMapping
@@ -52,15 +55,15 @@ public class LivroFisicoController extends AbstractController<LivroFisicoDTORequ
 	@Tag(name = "cadastrarLivro", description = "Realiza o cadastramento de um livro no estoque. Será criado um novo registro na base de estoque")
 	public LivroFisicoDTOResponse cadastrarLivro(@Valid @RequestBody LivroFisicoDTORequest livroRequest) throws BookStockException {
 		LivroFisico livro = convertDtoToEntity(livroRequest, LivroFisico.class);
-		LivroFisicoDTOResponse newLivro = convertEntityToDto(service.salvarLivro(livro), LivroFisicoDTOResponse.class);
+		LivroFisicoDTOResponse newLivro = convertEntityToDto(service.salvarTitulo(livro), LivroFisicoDTOResponse.class);
 		return newLivro;
 	}
 
-	@PutMapping
+	@PutMapping("/{id}")
 	@ResponseStatus(code = HttpStatus.OK)
 	@Tag(name = "editarLivro", description = "Realiza alteração de alguma informação de um livro no estoque")
-	public void editarLivro(@Valid @RequestBody LivroFisicoDTORequest livro) throws BookStockException {
-		service.editarLivro(convertDtoToEntity(livro, LivroFisico.class));
+	public void editarLivro(@PathVariable Long id, @Valid @RequestBody LivroFisicoDTORequest livro) throws BookStockException {
+		service.editarTitulo(id, convertDtoToEntity(livro, LivroFisico.class));
 	}
 	
 	@DeleteMapping("/{id}")
