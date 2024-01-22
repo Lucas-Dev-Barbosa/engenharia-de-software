@@ -10,13 +10,13 @@ import lombok.Setter;
 @Setter
 public class EBookDTORequest extends LivroDTORequest {
 
-	@NotNull(message = "Digite o tipo da capa.")
+	@NotNull(message = "Digite o tamanho do arquivo.")
 	private Long tamanhoArquivo;
 	
-	@NotBlank(message = "Digite as dimensoes do livro.")
+	@NotBlank(message = "Digite o formato do arquivo.")
 	private String formato;
 	
-	@NotBlank(message = "Digite o tipo de papel.")
+	@NotBlank(message = "Digite o tipo da fonte do arquivo.")
 	private String tipoFonte;
 	
 }
