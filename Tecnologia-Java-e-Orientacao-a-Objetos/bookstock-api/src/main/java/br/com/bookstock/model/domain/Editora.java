@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,13 +17,10 @@ import lombok.Setter;
 @SuppressWarnings("serial")
 public class Editora extends AbstractEntity {
 
-	@NotBlank(message = "Digite a razao social da editora.")
 	private String razaoSocial;
 	
-	@NotBlank(message = "Digite o endereco da editora.")
 	private String endereco;
 	
-	@NotBlank(message = "Digite o cnpj da editora.")
 	private String cnpj;
 	
 	@OneToMany(mappedBy = "editora")

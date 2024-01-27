@@ -1,7 +1,5 @@
 package br.com.bookstock.model.domain.dto.request;
 
-import java.text.ParseException;
-
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -22,15 +20,5 @@ public class AutorDTORequest {
 	
 	@NotBlank(message = "Digite o endereco.")
 	private String endereco;
-	
-	public void setNome(String nome) throws ParseException {
-		if (nome != null && !nome.isEmpty())
-			this.nome = nome.trim();
-	}
-	
-	public void setEndereco(String endereco) throws ParseException {
-		if (endereco != null && !endereco.isEmpty())
-			this.endereco = endereco.trim();
-	}
 
 }
