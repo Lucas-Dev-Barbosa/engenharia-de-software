@@ -1,0 +1,43 @@
+{
+  "descricao": "Solicitacao de pedido de almoco",
+  "data": "12-03-2023 16:11:10",
+  "web": false,
+  "solicitante": {
+    "nome": "Lucas",
+    "cpf": {
+      "cpf": "159.885.837-84"
+    },
+    "email": {
+      "emailAddress": "lucas.b.music@outlook.com"
+    }
+  },
+    "listaProdutos": [
+        {
+          "nome": "bebida",
+          "valor": 20.0,
+          "codigo": 123,
+          "tipo": "b",
+          "gelada": true,
+          "tamanho": 2,
+          "marca": "teste"
+        },
+        {
+          "nome": "comida",
+          "valor": 10.0,
+          "codigo": 321,
+          "tipo": "c",
+          "peso": 10.0,
+          "vegano": true,
+          "ingredientes": "arroz, feijão, salada, cane"
+        },
+        {
+          "nome": "sobremesa",
+          "valor": 15.0,
+          "codigo": 789,
+          "tipo": "s",
+          "quantidade": 2,
+          "doce": true,
+          "informacao": "E necessario reduzir o nivel de acuar para este cliente"
+        }
+      ]
+    }
