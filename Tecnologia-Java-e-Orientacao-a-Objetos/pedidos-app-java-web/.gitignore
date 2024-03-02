@@ -1,0 +1,7 @@
+/target/
+.settings
+/data
+.classpath
+.factorypath
+.project
+mvnw
