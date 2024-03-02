@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.lucas.model.domain.Pedido;
-import br.edu.infnet.lucas.model.domain.exception.PedidoException;
 import br.edu.infnet.lucas.model.domain.repository.PedidoRepository;
 
 @Service
@@ -15,10 +14,15 @@ public class PedidoService implements IPedidoService {
 
 	@Autowired
     private PedidoRepository pedidoRepository;
+	
+	@Override
+    public List<Pedido> listaPedidos() {
+        return new ArrayList<>(pedidoRepository.findAll());
+    }
 
     @Override
-    public Pedido getPedidoById(Long id) throws PedidoException {
-        return pedidoRepository.findById(id).orElseThrow(() -> new PedidoException("Pedido nao encontrado"));
+    public Pedido getPedidoById(Long id) {
+        return pedidoRepository.findById(id).orElse(new Pedido());
     }
 
     @Override
@@ -37,8 +41,4 @@ public class PedidoService implements IPedidoService {
         return pedidoRepository.save(pedido);
     }
 
-    @Override
-    public List<Pedido> listaPedidos() {
-        return new ArrayList<>(pedidoRepository.findAll());
-    }
 }

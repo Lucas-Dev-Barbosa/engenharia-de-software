@@ -1,13 +1,12 @@
 package br.edu.infnet.lucas.service;
 
-import br.edu.infnet.lucas.model.domain.Pedido;
-import br.edu.infnet.lucas.model.domain.exception.PedidoException;
-
 import java.util.List;
+
+import br.edu.infnet.lucas.model.domain.Pedido;
 
 public interface IPedidoService {
 
-    Pedido getPedidoById(Long id) throws PedidoException;
+    Pedido getPedidoById(Long id);
 
     Pedido insertPedido(Pedido pedido);
 

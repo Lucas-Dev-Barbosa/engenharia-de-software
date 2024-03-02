@@ -3,6 +3,7 @@ package br.edu.infnet.lucas.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,27 +24,35 @@ public class PedidoController {
 	@Autowired
     private PedidoService pedidoService;
 
-    @GetMapping
-    public ModelAndView listaPedidos(ModelAndView modelAndView) throws PedidoException {
+    @GetMapping("/lista")
+    public ModelAndView listaPedidos(ModelAndView modelAndView) {
     	modelAndView.addObject("pedidos", pedidoService.listaPedidos());
     	modelAndView.setViewName("pedidos/list-pedidos");
         return modelAndView;
     }
+    
+    @GetMapping("/new")
+    public String pedido(Model model) {
+    	return "pedidos/pedido";
+    }
+    
+    @PostMapping("/salva")
+    @ResponseStatus(HttpStatus.CREATED)
+    public String insertPedido(@RequestBody Pedido pedido) {
+        pedidoService.insertPedido(pedido);
+        return "redirect:/pedidos/lista";
+    }
 
-    @GetMapping("/{id-pedido}")
-    public Pedido getPedidoById(@PathVariable(name = "id-pedido") Long id) throws PedidoException {
-        return pedidoService.getPedidoById(id);
+    @GetMapping("/pedido/{idPedido}")
+    public String getPedidoById(@PathVariable(name = "idPedido") Long id, Model model) throws PedidoException {
+    	model.addAttribute("pedido", pedidoService.getPedidoById(id));
+    	return "pedidos/pedido"; 
     }
 
     @GetMapping("/delete/{id-pedido}")
-    public void deletePedidoById(@PathVariable(name = "id-pedido") Long id) {
+    public String deletePedidoById(@PathVariable(name = "id-pedido") Long id) {
         pedidoService.deletePedidoById(id);
-    }
-
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Pedido insertPedido(@RequestBody Pedido pedido) {
-        return pedidoService.insertPedido(pedido);
+        return "redirect:/pedidos/lista";
     }
 
     @PutMapping
