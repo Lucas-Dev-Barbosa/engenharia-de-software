@@ -8,9 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -32,16 +29,6 @@ public abstract class Produto {
     private double valor;
     private int codigo;
     private char tipo;
-    
-    @ManyToOne
-    @JoinTable(
-            name="PRODUTO_PEDIDO",
-            joinColumns=
-                @JoinColumn(name="produtoId", referencedColumnName="id"),
-            inverseJoinColumns=
-                @JoinColumn(name="pedidoId", referencedColumnName="id")
-        )
-    private Pedido pedido;
 
     public abstract String getDescricaoProduto();
 

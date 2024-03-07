@@ -1,7 +1,6 @@
 package br.edu.infnet.lucas.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,19 +9,22 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import br.edu.infnet.lucas.model.domain.Pedido;
 import br.edu.infnet.lucas.model.domain.exception.PedidoException;
-import br.edu.infnet.lucas.service.PedidoService;
+import br.edu.infnet.lucas.service.IPedidoService;
+import br.edu.infnet.lucas.service.ISolicitanteService;
 
 @Controller
 @RequestMapping("/pedidos")
 public class PedidoController {
 
 	@Autowired
-    private PedidoService pedidoService;
+    private IPedidoService pedidoService;
+	
+	@Autowired
+    private ISolicitanteService solicitanteService;
 
     @GetMapping("/lista")
     public ModelAndView listaPedidos(ModelAndView modelAndView) {
@@ -33,12 +35,12 @@ public class PedidoController {
     
     @GetMapping("/new")
     public String pedido(Model model) {
+    	model.addAttribute("solicitantes", solicitanteService.listaSolicitante());
     	return "pedidos/pedido";
     }
     
     @PostMapping("/salva")
-    @ResponseStatus(HttpStatus.CREATED)
-    public String insertPedido(@RequestBody Pedido pedido) {
+    public String insertPedido(Pedido pedido) {
         pedidoService.insertPedido(pedido);
         return "redirect:/pedidos/lista";
     }
@@ -49,8 +51,8 @@ public class PedidoController {
     	return "pedidos/pedido"; 
     }
 
-    @GetMapping("/delete/{id-pedido}")
-    public String deletePedidoById(@PathVariable(name = "id-pedido") Long id) {
+    @GetMapping("/{idPedido}/delete")
+    public String deletePedidoById(@PathVariable(name = "idPedido") Long id) {
         pedidoService.deletePedidoById(id);
         return "redirect:/pedidos/lista";
     }

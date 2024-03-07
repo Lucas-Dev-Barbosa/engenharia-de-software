@@ -1,7 +1,5 @@
 package br.edu.infnet.lucas.model.domain;
 
-import java.util.Arrays;
-
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -23,13 +21,13 @@ public class Comida extends Produto {
 
     private float peso;
     private boolean vegano;
-    private String[] ingredientes;
+    private String ingredientes;
 
     @Override
     public String getDescricaoProduto() {
         return "O peso da comida e de " + this.peso + "KG."
                 + (this.vegano ? " A comida e vegana" : " A comida nao e vegana"
-                + " e possui os seguintes ingredientes: " + Arrays.toString(this.ingredientes));
+                + " e possui os seguintes ingredientes: " + this.ingredientes);
     }
 
 }

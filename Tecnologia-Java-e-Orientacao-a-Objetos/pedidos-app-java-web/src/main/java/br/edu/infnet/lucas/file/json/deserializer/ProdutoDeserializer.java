@@ -14,7 +14,9 @@ import java.io.IOException;
 
 public class ProdutoDeserializer extends StdDeserializer<Produto> {
 
-    private String nome;
+	private static final long serialVersionUID = 1L;
+
+	private String nome;
     private double valor;
     private int codigo;
     private char tipo;
@@ -59,7 +61,7 @@ public class ProdutoDeserializer extends StdDeserializer<Produto> {
         Comida comida = new Comida();
         comida.setPeso(jsonNode.get("peso").asInt());
         comida.setVegano(jsonNode.get("vegano").asBoolean());
-        comida.setIngredientes(jsonNode.get("ingredientes").asText().split(","));
+        comida.setIngredientes(jsonNode.get("ingredientes").asText());
 
         produto = comida;
     }

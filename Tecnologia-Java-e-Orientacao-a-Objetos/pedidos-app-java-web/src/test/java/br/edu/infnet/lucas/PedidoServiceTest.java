@@ -180,7 +180,7 @@ public class PedidoServiceTest {
         comida.setTipo('c');
         comida.setPeso(15f);
         comida.setVegano(false);
-        comida.setIngredientes(new String[] {"Arroz", "Feijao", "Salada", "Bife", "Batata Frita"});
+        comida.setIngredientes("Arroz, Feijao, Salada, Bife, Batata Frita");
 
         return comida;
     }

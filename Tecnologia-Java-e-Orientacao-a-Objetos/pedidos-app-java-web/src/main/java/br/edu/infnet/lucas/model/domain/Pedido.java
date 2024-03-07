@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -28,7 +30,14 @@ public class Pedido {
     @OneToOne
     private Solicitante solicitante;
     
-    @OneToMany(mappedBy = "pedido")
+    @JoinTable(
+            name="PRODUTO_PEDIDO",
+            joinColumns=
+                @JoinColumn(name="pedidoId", referencedColumnName="id"),
+            inverseJoinColumns=
+                @JoinColumn(name="produtoId", referencedColumnName="id")
+        )
+    @OneToMany
     private List<Produto> listaProdutos;
     
 }

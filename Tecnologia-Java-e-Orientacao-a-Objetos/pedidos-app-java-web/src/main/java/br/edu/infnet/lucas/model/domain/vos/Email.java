@@ -4,14 +4,16 @@ import javax.persistence.Embeddable;
 
 import br.edu.infnet.lucas.model.domain.exception.EmailInvalidoException;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 @Getter
 @ToString
+@NoArgsConstructor
 @Embeddable
 public class Email {
 
-    private final String emailAddress;
+    private String emailAddress;
 
     public Email(String emailAddress) throws EmailInvalidoException {
         ValidationVo.validaPadraoEmail(emailAddress);
