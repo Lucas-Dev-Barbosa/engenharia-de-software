@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.edu.infnet.lucas.model.domain.Pedido;
 import br.edu.infnet.lucas.model.domain.exception.PedidoException;
 import br.edu.infnet.lucas.service.IPedidoService;
+import br.edu.infnet.lucas.service.IProdutoService;
 import br.edu.infnet.lucas.service.ISolicitanteService;
 
 @Controller
@@ -25,6 +26,9 @@ public class PedidoController {
 	
 	@Autowired
     private ISolicitanteService solicitanteService;
+	
+	@Autowired
+    private IProdutoService produtoService;
 
     @GetMapping("/lista")
     public ModelAndView listaPedidos(ModelAndView modelAndView) {
@@ -36,6 +40,8 @@ public class PedidoController {
     @GetMapping("/new")
     public String pedido(Model model) {
     	model.addAttribute("solicitantes", solicitanteService.listaSolicitante());
+    	model.addAttribute("produtos", produtoService.listaProduto());
+    	
     	return "pedidos/pedido";
     }
     

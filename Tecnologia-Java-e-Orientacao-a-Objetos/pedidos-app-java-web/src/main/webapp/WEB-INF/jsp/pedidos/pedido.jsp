@@ -35,7 +35,7 @@
 					<label class="form-check-label" for="web">Web:</label>
 				</div>
 				<div class="input-group-text">
-					<input type="checkbox" class="form-check-input mt-0" value="${pedido.web}" name="web" id="web">
+					<input id="webCheck" type="checkbox" class="form-check-input mt-0" value="${pedido.web}" name="web" id="web">
 				</div>
 			</div>
 			
@@ -59,12 +59,15 @@
 			<div class="input-group mb-3">
 				<c:if test="${not empty produtos}">
 					<label>Produtos:</label>
+					
 					<c:forEach var="p" items="${produtos}">
-						<div class="input-group-text">
-							<label class="form-check-label" for="web" title="${p.nome}"></label>
-						</div>
-						<div class="input-group-text">
-							<input type="checkbox" class="form-check-input mt-0" value="${p.nome}" name="produto.id">
+						<div class="input-group mb-2">
+							<div class="input-group-text">
+								<label class="form-check-label" for="web">${p.nome}</label>
+							</div>
+							<div class="input-group-text">
+								<input type="checkbox" class="form-check-input mt-0" value="${p.id}" name="listaProdutos">
+							</div>
 						</div>
 					</c:forEach>
 				</c:if>
@@ -80,5 +83,13 @@
 		</form>			  
 
 	</div>
+	
+	<script type="text/javascript">
+		var webCheck = document.getElementById("webCheck");
+		
+		webCheck.addEventListener('change', function(){
+			webCheck.value = webCheck.checked;
+		});
+	</script>
 </body>
 </html>

@@ -78,7 +78,7 @@
 						<label class="form-check-label">Vegano:</label>
 					</div>
 					<div class="input-group-text">
-						<input type="checkbox" class="form-check-input mt-0" value="${produto.vegano}" name="vegano">
+						<input id="veganoCheck" type="checkbox" class="form-check-input mt-0" value="${produto.vegano}" name="vegano">
 					</div>
 				</div>
 				
@@ -99,7 +99,7 @@
 						<label class="form-check-label">Doce:</label>
 					</div>
 					<div class="input-group-text">
-						<input type="checkbox" class="form-check-input mt-0" value="${produto.doce}" name="doce">
+						<input id="doceCheck" type="checkbox" class="form-check-input mt-0" value="${produto.doce}" name="doce">
 					</div>
 				</div>
 				
@@ -155,6 +155,18 @@
 		
 		geladaCheck.addEventListener('change', function(){
 			geladaCheck.value = geladaCheck.checked;
+		});
+		
+		var veganoCheck = document.getElementById("veganoCheck");
+		
+		veganoCheck.addEventListener('change', function(){
+			veganoCheck.value = veganoCheck.checked;
+		});
+		
+		var doceCheck = document.getElementById("doceCheck");
+		
+		doceCheck.addEventListener('change', function(){
+			doceCheck.value = doceCheck.checked;
 		});
 	</script>
 </body>
