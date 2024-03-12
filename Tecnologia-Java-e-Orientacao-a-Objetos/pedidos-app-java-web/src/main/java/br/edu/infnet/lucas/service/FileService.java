@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import br.edu.infnet.lucas.file.IAppFileReader;
 import br.edu.infnet.lucas.file.IAppFileWriter;
+import br.edu.infnet.lucas.model.domain.LabelsApp;
 import br.edu.infnet.lucas.model.domain.Pedido;
 import br.edu.infnet.lucas.model.domain.Produto;
 import br.edu.infnet.lucas.model.domain.exception.PedidoException;
@@ -20,14 +21,14 @@ public class FileService {
 	private final String BASE_PATH_FILE = "/src/main/resources/";
 	
 	@Autowired
-	private IAppFileReader<Pedido> appFileReader;
+	private IAppFileReader<LabelsApp> appFileReader;
     
 	@Autowired
 	private IAppFileWriter<List<List<String>>> appFileWriter;
 	
-	public Pedido leDadosArquivo() throws PedidoException {
+	public LabelsApp leDadosArquivo() throws PedidoException {
         return appFileReader
-                .readFile(Paths.get(".", BASE_PATH_FILE + "pedidos.json"), Pedido.class);
+                .readFile(Paths.get(".", BASE_PATH_FILE + "labels.json"), LabelsApp.class);
     }
 
     public void escreveDadosArquivo(List<Pedido> pedidos) throws IOException {

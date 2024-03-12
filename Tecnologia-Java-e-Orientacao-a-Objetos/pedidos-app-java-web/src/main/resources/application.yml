@@ -1,5 +1,9 @@
 server:
   port: 8080
+  
+  servlet:
+    encoding:
+      charset: UTF-8
 
 spring:
   datasource:
@@ -7,6 +11,10 @@ spring:
     url: jdbc:h2:file:./data/bookstock
     username: sa
     password:
+    
+  sql:
+    init:
+      encoding: UTF-8
     
   h2:
     console:

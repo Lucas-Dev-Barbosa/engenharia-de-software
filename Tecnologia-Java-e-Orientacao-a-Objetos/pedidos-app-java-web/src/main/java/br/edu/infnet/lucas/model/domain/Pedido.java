@@ -9,7 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
 import lombok.Data;
@@ -37,7 +37,7 @@ public class Pedido {
             inverseJoinColumns=
                 @JoinColumn(name="produtoId", referencedColumnName="id")
         )
-    @OneToMany
+    @ManyToMany
     private List<Produto> listaProdutos;
     
 }

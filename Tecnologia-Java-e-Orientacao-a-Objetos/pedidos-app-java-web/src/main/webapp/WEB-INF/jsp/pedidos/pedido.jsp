@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 	
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
@@ -9,7 +9,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Pedido</title>
 </head>
 <body>
@@ -17,11 +17,11 @@
 	
 	<div class="container mt-3">
 	
-		<h4>Informações do pedido</h4>	
+		<h4>InformaÃ§Ãµes do pedido</h4>	
 	
 		<form action="/pedidos/salva" method="post">
 		    <div class="input-group mb-3">
-				<label class="input-group-text">Descrição:</label>
+				<label class="input-group-text">DescriÃ§Ã£o:</label>
 				<input type="text" class="form-control" value="${pedido.descricao}" name="descricao">
 			</div>
 			
@@ -44,7 +44,7 @@
 					<label class="input-group-text">Solicitante:</label>
 					
 					<select id="solicitante" class="form-select" name="solicitante.id">
-						<option selected="selected" disabled="disabled">Escolha	uma opção</option>
+						<option selected="selected" disabled="disabled">Escolha	uma opÃ§Ã£o</option>
 						<c:forEach var="s" items="${solicitantes}">
 							<option value="${s.id}">${s.nome}</option>
 						</c:forEach>
@@ -52,7 +52,7 @@
 				</c:if>
 
 				<c:if test="${empty solicitantes}">
-					<p>Não existem solicitantes cadastrados no momento!</p>
+					<p>NÃ£o existem solicitantes cadastrados no momento!</p>
 				</c:if>
 			</div>
 			
@@ -73,7 +73,7 @@
 				</c:if>
 
 				<c:if test="${empty produtos}">
-					<p>Não existem produtos cadastrados no momento!</p>
+					<p>NÃ£o existem produtos cadastrados no momento!</p>
 				</c:if>
 			</div>
 			
