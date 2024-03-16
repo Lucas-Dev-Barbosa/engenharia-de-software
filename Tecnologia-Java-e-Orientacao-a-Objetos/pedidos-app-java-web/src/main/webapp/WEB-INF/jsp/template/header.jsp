@@ -21,9 +21,15 @@
           <a class="nav-link" href="<c:url value="/produtos/lista" />">Produtos</a>
         </li>
       </ul>
-      <span class="navbar-text">
-        App para gerenciamento de pedidos
-      </span>
+      
+      <div class="my-2 my-lg-0">
+      	<span class="navbar-text">
+      		<a class="nav-link" href="<c:url value="/usuarios/lista" />">Usuários</a>
+      	</span>
+      	<span class="navbar-text">
+      		App para gerenciamento de pedidos
+      	</span>
+      </div>
     </div>
   </div>
 </nav>
