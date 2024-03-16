@@ -1,0 +1,5 @@
+id_livro;titulo;isbn;editora_id;estoque_id;tipo_livro
+2;Titulo de EBook teste;isbn-170224112152AM;2;2;ebook
+3;Teste de insercao EBOOK;isbn-ebook-autores;2;3;ebook
+1;Titulo de livro teste;isbn-170224112152;1;1;fisico
+4;Terceiro Teste de cadastro;isbn-1101240951a323;1;4;fisico
