@@ -16,7 +16,7 @@
 	<c:import url="../template/header.jsp" />
 	
 	<div class="container mt-3">
-		<form action="/solicitantes/new" method="get">
+		<form action="/usuarios/new" method="get">
 		  <button type="submit" class="btn btn-primary">Novo</button>
 		</form>
 		
@@ -38,11 +38,11 @@
 			    <tbody>
 			      <c:forEach var="u" items="${usuarios}">
 				      <tr>
-				        <td>${s.id}</td>
-				        <td>${s.nome}</td>
-				        <td>${s.cpf.cpf}</td>
-				        <td>${s.email.emailAddress}</td>
-				        <td><a href="/solicitantes/${s.id}/delete">excluir</a></td>
+				        <td>${u.id}</td>
+				        <td>${u.nome}</td>
+				        <td>${u.email.emailAddress}</td>
+				        <td>${u.status}</td>
+				        <td><a href="/usuarios/${u.id}/delete">excluir</a></td>
 				      </tr>
 			      </c:forEach>		      
 			    </tbody>

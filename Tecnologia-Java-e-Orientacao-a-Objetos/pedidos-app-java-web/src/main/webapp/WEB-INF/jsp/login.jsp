@@ -13,7 +13,7 @@
 <title>Login User</title>
 </head>
 <body>
-	<c:import url="../template/header.jsp" />
+	<c:import url="./template/header.jsp" />
 	
 	<div class="container mt-3">
 	
@@ -32,7 +32,7 @@
 			
 			<br />
 
-			<button type="submit" class="btn btn-primary">Cadastrar</button>
+			<button type="submit" class="btn btn-primary">Login</button>
 		</form>			  
 
 	</div>

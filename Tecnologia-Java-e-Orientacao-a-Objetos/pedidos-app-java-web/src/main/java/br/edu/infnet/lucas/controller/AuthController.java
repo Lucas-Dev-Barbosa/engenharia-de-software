@@ -16,7 +16,7 @@ public class AuthController {
     @GetMapping("/login")
     public String showFormLogin(Model model) throws PedidoException {
     	model.addAttribute("usuario", new Usuario());
-        return "usuarios/login";
+        return "login";
     }
 
 }

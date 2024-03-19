@@ -24,10 +24,10 @@
       
       <div class="my-2 my-lg-0">
       	<span class="navbar-text">
-      		<a class="nav-link" href="<c:url value="/usuarios/lista" />">Usuários</a>
+      		App para gerenciamento de pedidos
       	</span>
       	<span class="navbar-text">
-      		App para gerenciamento de pedidos
+      		<a class="nav-link" href="<c:url value="/usuarios/lista" />">Usuários</a>
       	</span>
       </div>
     </div>

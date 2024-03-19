@@ -11,49 +11,54 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import br.edu.infnet.lucas.model.domain.Solicitante;
-import br.edu.infnet.lucas.service.ISolicitanteService;
+import br.edu.infnet.lucas.model.domain.Usuario;
+import br.edu.infnet.lucas.service.IRoleService;
+import br.edu.infnet.lucas.service.IUsuarioService;
 
 @Controller
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
 	@Autowired
-    private ISolicitanteService solicitanteService;
+    private IUsuarioService usuarioService;
+	
+	@Autowired
+    private IRoleService roleService;
 
     @GetMapping("/lista")
-    public ModelAndView listaSolicitantes(ModelAndView modelAndView) {
-    	modelAndView.addObject("solicitantes", solicitanteService.listaSolicitante());
-    	modelAndView.setViewName("solicitantes/list-solicitantes");
+    public ModelAndView listaUsuarios(ModelAndView modelAndView) {
+    	modelAndView.addObject("usuarios", usuarioService.listaUsuario());
+    	modelAndView.setViewName("usuarios/list-usuarios");
         return modelAndView;
     }
     
     @GetMapping("/new")
-    public String solicitante(Model model) {
-    	return "solicitantes/solicitante";
+    public String usuario(Model model) {
+    	model.addAttribute("roles", roleService.listaRole());
+    	return "usuarios/usuario";
     }
     
     @PostMapping("/salva")
-    public String insertSolicitantes(Solicitante solicitante) {
-        solicitanteService.insertSolicitante(solicitante);
-        return "redirect:/solicitantes/lista";
+    public String insertUsuarios(Usuario usuario) {
+        usuarioService.insertUsuario(usuario);
+        return "redirect:/usuarios/lista";
     }
 
-    @GetMapping("/solicitante/{idSolicitante}")
-    public String getSolicitanteById(@PathVariable(name = "idSolicitante") Long id, Model model) {
-    	model.addAttribute("solicitante", solicitanteService.getSolicitanteById(id));
-    	return "solicitantes/solicitante"; 
+    @GetMapping("/usuario/{idUsuario}")
+    public String getUsuarioById(@PathVariable(name = "idUsuario") Long id, Model model) {
+    	model.addAttribute("usuario", usuarioService.getUsuarioById(id));
+    	return "usuarios/usuario"; 
     }
 
-    @GetMapping("/{idSolicitante}/delete")
-    public String deleteSolicitanteById(@PathVariable(name = "idSolicitante") Long id) {
-        solicitanteService.deleteSolicitanteById(id);
-        return "redirect:/solicitantes/lista";
+    @GetMapping("/{idUsuario}/delete")
+    public String deleteUsuarioById(@PathVariable(name = "idUsuario") Long id) {
+        usuarioService.deleteUsuarioById(id);
+        return "redirect:/usuarios/lista";
     }
 
     @PutMapping
-    public Solicitante updateSolicitante(@RequestBody Solicitante solicitante) {
-        return solicitanteService.updateSolicitante(solicitante);
+    public Usuario updateUsuario(@RequestBody Usuario usuario) {
+        return usuarioService.updateUsuario(usuario);
     }
 
 }

@@ -1,6 +1,6 @@
 package br.edu.infnet.lucas.model.domain;
 
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -30,5 +30,5 @@ public class Usuario {
 	private Integer status;
 	
 	@ManyToMany
-	private Set<Role> roles;
+	private List<Role> roles;
 }
