@@ -2,12 +2,14 @@ package br.edu.infnet.lucas.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.edu.infnet.lucas.model.domain.Usuario;
 import br.edu.infnet.lucas.model.domain.repository.UsuarioRepository;
+import br.edu.infnet.lucas.model.domain.vos.Email;
 
 @Service
 public class UsuarioService implements IUsuarioService {
@@ -24,6 +26,11 @@ public class UsuarioService implements IUsuarioService {
     public Usuario getUsuarioById(Long id) {
         return usuarioRepository.findById(id).orElse(new Usuario());
     }
+    
+    @Override
+	public Optional<Usuario> getUsuarioByEmail(Email email) {
+		return usuarioRepository.findByEmail(email);
+	}
 
     @Override
     public Usuario insertUsuario(Usuario usuario) {

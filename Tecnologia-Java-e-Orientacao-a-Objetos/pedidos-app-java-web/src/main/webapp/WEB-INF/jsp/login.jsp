@@ -17,17 +17,24 @@
 	
 	<div class="container mt-3">
 	
+		<c:if test="${not empty message}">
+			<div class="alert alert-danger alert-dismissible fade show" role="alert">
+			  ${message}
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		</c:if>
+	
 		<h4>LOGIN</h4>	
 	
-		<form action="/auth/login" method="post">
+		<form action="/auth/efetuarLogin" method="post">
 		    <div class="input-group mb-3">
 				<label class="input-group-text">E-mail:</label>
-				<input type="text" class="form-control" value="${usuario.email}" name="email">
+				<input type="email" class="form-control" value="${usuario.email}" name="email">
 			</div>
 			
 			<div class="input-group mb-3">
 				<label class="input-group-text">Password:</label>
-				<input type="text" class="form-control" value="${usuario.password}" name="email">
+				<input type="password" class="form-control" value="${usuario.password}" name="password">
 			</div>
 			
 			<br />
